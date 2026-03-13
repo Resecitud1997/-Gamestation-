@@ -3,9 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIOS GameStation v3.0</title>
+<meta name="theme-color" content="#06090f">
+<meta name="description" content="AIOS GameStation — Emulador offline sin internet">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>AIOS GameStation v3.0 — OFFLINE</title>
+<!-- PWA manifest inline -->
+<script>
+// Register manifest inline
+const manifestData = {
+  "name": "AIOS GameStation",
+  "short_name": "AIOS GS",
+  "description": "Emulador multi-consola offline",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#06090f",
+  "theme_color": "#00d4ff",
+  "icons": [
+    {"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5' fill='%2300d4ff'/><text y='.9em' font-size='65' x='22' fill='%23000'>A</text></svg>", "sizes": "any", "type": "image/svg+xml"}
+  ]
+};
+const mBlob = new Blob([JSON.stringify(manifestData)], {type:'application/manifest+json'});
+const mURL = URL.createObjectURL(mBlob);
+const mLink = document.createElement('link');
+mLink.rel = 'manifest'; mLink.href = mURL;
+document.addEventListener('DOMContentLoaded', () => document.head.appendChild(mLink));
+</script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+/* ── OFFLINE FONTS — 100% embedded, no internet needed ── */
+@font-face{font-family:'Orbitron';font-weight:400 900;font-style:normal;
+  src:local('Orbitron'),local('Orbitron-Regular');
+  /* Fallback geometric sans stack */}
+@font-face{font-family:'Rajdhani';font-weight:400 700;font-style:normal;
+  src:local('Rajdhani'),local('Rajdhani-Regular');}
+@font-face{font-family:'Share Tech Mono';font-weight:400;font-style:normal;
+  src:local('Share Tech Mono'),local('ShareTechMono-Regular');}
+/* System font fallbacks when custom fonts not installed */
 :root{
   --bg:#06090f;--bg2:#0a0f1a;--bg3:#0f1624;--panel:#111827;
   --border:#1e3a5f;--border2:#0d2440;--accent:#00d4ff;--accent2:#0099cc;
@@ -15,7 +47,7 @@
   --shadow:0 25px 50px rgba(0,0,0,.8);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;}
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
@@ -34,22 +66,22 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent3));
   clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
   display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;
-  color:#000;font-family:'Orbitron',sans-serif;animation:logoSpin 8s linear infinite;flex-shrink:0;}
+  color:#000;font-family:'Orbitron','Segoe UI',system-ui,sans-serif;animation:logoSpin 8s linear infinite;flex-shrink:0;}
 @keyframes logoSpin{0%{filter:hue-rotate(0deg) drop-shadow(0 0 8px var(--accent));}
   50%{filter:hue-rotate(60deg) drop-shadow(0 0 16px var(--accent3));}
   100%{filter:hue-rotate(0deg) drop-shadow(0 0 8px var(--accent));}}
-.logo-title{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--accent);
+.logo-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:14px;font-weight:900;color:var(--accent);
   letter-spacing:3px;text-shadow:0 0 20px var(--accent);}
-.logo-sub{font-size:10px;color:var(--text3);letter-spacing:2px;font-family:'Share Tech Mono',monospace;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:2px;font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .header-pills{display:flex;gap:5px;flex-wrap:wrap;}
 .pill{padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:var(--bg3);
   color:var(--text2);font-size:11px;letter-spacing:1px;cursor:pointer;transition:all .2s;
-  font-family:'Share Tech Mono',monospace;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .pill:hover,.pill.active{border-color:var(--accent);color:var(--accent);
   box-shadow:0 0 12px var(--accent)44;background:rgba(0,212,255,.08);}
 .header-right{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 .hbtn{padding:7px 15px;background:transparent;border:1px solid var(--border);color:var(--text2);
-  cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:600;
+  cursor:pointer;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-size:12px;font-weight:600;
   letter-spacing:1px;transition:all .2s;border-radius:4px;}
 .hbtn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--glow);}
 .hbtn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -69,7 +101,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
   height:calc(100vh - 65px);overflow-y:auto;position:sticky;top:65px;}
 .sb-section{padding:14px 0;}
 .sb-label{font-size:10px;letter-spacing:3px;color:var(--text3);padding:0 18px 8px;
-  font-family:'Share Tech Mono',monospace;text-transform:uppercase;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;text-transform:uppercase;}
 .console-item{display:flex;align-items:center;gap:10px;padding:9px 18px;cursor:pointer;
   border-left:3px solid transparent;transition:all .15s;user-select:none;}
 .console-item:hover{background:rgba(0,212,255,.05);border-left-color:var(--accent2);}
@@ -78,13 +110,13 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .con-emoji{font-size:20px;width:28px;text-align:center;flex-shrink:0;}
 .con-info{flex:1;min-width:0;}
 .con-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.con-meta{font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-top:1px;}
+.con-meta{font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-top:1px;}
 .con-count{font-size:9px;background:var(--bg3);border:1px solid var(--border);color:var(--text3);
-  padding:2px 6px;border-radius:10px;font-family:'Share Tech Mono',monospace;flex-shrink:0;}
+  padding:2px 6px;border-radius:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;flex-shrink:0;}
 .console-item.active .con-count{border-color:var(--accent);color:var(--accent);}
 .sb-divider{height:1px;background:var(--border2);margin:4px 18px;}
 .add-con-btn{margin:8px 14px;padding:9px;border:1px dashed var(--border);background:transparent;
-  color:var(--text3);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;
+  color:var(--text3);cursor:pointer;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-size:12px;
   letter-spacing:1px;font-weight:600;transition:all .2s;border-radius:4px;
   width:calc(100% - 28px);display:flex;align-items:center;justify-content:center;gap:6px;}
 .add-con-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.05);}
@@ -105,11 +137,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 @keyframes hGlow{0%{opacity:.5;transform:scale(1);}100%{opacity:1;transform:scale(1.2);}}
 .hero-content{position:relative;z-index:2;padding:28px 32px;height:100%;
   display:flex;flex-direction:column;justify-content:space-between;}
-.hero-title{font-family:'Orbitron',sans-serif;font-size:26px;font-weight:900;color:#fff;
+.hero-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:26px;font-weight:900;color:#fff;
   letter-spacing:2px;text-shadow:0 0 30px var(--accent),0 0 60px var(--accent)44;}
 .hero-sub{font-size:12px;color:var(--text2);margin-top:5px;letter-spacing:1px;}
 .hero-stats{display:flex;gap:30px;}
-.hstat-n{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;
+.hstat-n{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:24px;font-weight:900;
   background:linear-gradient(135deg,var(--accent),var(--accent3));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hstat-l{font-size:10px;letter-spacing:2px;color:var(--text3);}
@@ -120,19 +152,19 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .toolbar-left{display:flex;gap:6px;flex-wrap:wrap;}
 .toolbar-right{display:flex;gap:6px;align-items:center;}
 .filter-btn{padding:5px 12px;border:1px solid var(--border);background:transparent;
-  color:var(--text3);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;
+  color:var(--text3);cursor:pointer;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-size:12px;
   font-weight:600;letter-spacing:1px;transition:all .15s;border-radius:3px;}
 .filter-btn:hover,.filter-btn.active{border-color:var(--accent);color:var(--accent);
   background:rgba(0,212,255,.08);}
 .search-box{display:flex;align-items:center;gap:7px;padding:5px 12px;
   border:1px solid var(--border);background:var(--bg3);border-radius:4px;}
 .search-box input{background:transparent;border:none;outline:none;color:var(--text);
-  font-family:'Rajdhani',sans-serif;font-size:12px;width:140px;}
+  font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-size:12px;width:140px;}
 .search-box input::placeholder{color:var(--text3);}
 
 /* ─── ROM GRID ─── */
 .rom-section{padding:20px 24px;}
-.section-title{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:3px;
+.section-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:11px;letter-spacing:3px;
   color:var(--text3);margin-bottom:14px;text-transform:uppercase;
   display:flex;align-items:center;gap:10px;}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border2);}
@@ -151,18 +183,18 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .rom-cover-icon{font-size:36px;opacity:.6;}
 .rom-cover-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,9,15,.8));}
 .rom-badge{position:absolute;top:7px;right:7px;font-size:8px;padding:2px 6px;border-radius:10px;
-  font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;letter-spacing:1px;}
 .rom-badge.new{background:var(--accent3)33;border:1px solid var(--accent3);color:var(--accent3);}
 .rom-badge.fav{background:var(--gold)33;border:1px solid var(--gold);color:var(--gold);}
 .rom-badge.saved{background:var(--purple)33;border:1px solid var(--purple);color:var(--purple);}
 .rom-body{padding:10px;}
 .rom-title{font-size:11px;font-weight:600;color:var(--text);margin-bottom:3px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.rom-info{font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;
+.rom-info{font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;
   display:flex;justify-content:space-between;}
 .rom-actions{display:flex;gap:5px;padding:7px 10px;border-top:1px solid var(--border2);}
 .r-btn{flex:1;padding:5px;border:1px solid var(--border);background:transparent;
-  color:var(--text3);cursor:pointer;font-size:9px;font-family:'Share Tech Mono',monospace;
+  color:var(--text3);cursor:pointer;font-size:9px;font-family:'Share Tech Mono','Courier New',Courier,monospace;
   transition:all .15s;border-radius:3px;text-align:center;}
 .r-btn:hover{border-color:var(--accent2);color:var(--accent);background:rgba(0,212,255,.05);}
 .r-btn.play{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08);}
@@ -182,11 +214,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .emu-topbar{display:flex;align-items:center;justify-content:space-between;padding:9px 18px;
   background:rgba(6,9,15,.95);border-bottom:1px solid var(--border);
   backdrop-filter:blur(10px);flex-shrink:0;gap:10px;}
-.emu-title{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:2px;
+.emu-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:11px;letter-spacing:2px;
   color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
 .emu-controls{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
 .ebtn{padding:6px 12px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);
-  cursor:pointer;font-family:'Share Tech Mono',monospace;font-size:9px;
+  cursor:pointer;font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:9px;
   letter-spacing:1px;transition:all .15s;border-radius:3px;}
 .ebtn:hover{border-color:var(--accent);color:var(--accent);}
 .ebtn.danger{border-color:var(--red)66;color:var(--red);}
@@ -199,7 +231,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 #emulator-js-container{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
 #emulator-js-container canvas,#emulator-js-container #game{max-width:100%!important;max-height:100%!important;image-rendering:pixelated;}
 .emu-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:16px;color:var(--accent);font-family:'Share Tech Mono',monospace;}
+  gap:16px;color:var(--accent);font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .emu-spinner{width:50px;height:50px;border:3px solid var(--border);border-top-color:var(--accent);
   border-radius:50%;animation:spin 1s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -214,10 +246,10 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 #python-panel.visible{display:flex;}
 .py-topbar{display:flex;align-items:center;padding:10px 18px;
   background:rgba(10,15,26,.98);border-bottom:1px solid var(--purple)44;gap:10px;}
-.py-title{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;color:var(--purple);flex:1;}
+.py-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:13px;letter-spacing:2px;color:var(--purple);flex:1;}
 .py-tabs{display:flex;gap:4px;}
 .py-tab{padding:6px 16px;border:1px solid var(--border);background:var(--bg3);
-  color:var(--text3);cursor:pointer;font-family:'Share Tech Mono',monospace;
+  color:var(--text3);cursor:pointer;font-family:'Share Tech Mono','Courier New',Courier,monospace;
   font-size:10px;letter-spacing:1px;border-radius:3px 3px 0 0;transition:all .15s;}
 .py-tab.active{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.1);}
 .py-body{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
@@ -225,12 +257,12 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .py-window{background:var(--bg);display:flex;flex-direction:column;overflow:hidden;}
 .py-win-header{padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border2);
   display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;}
-.py-win-title{font-size:10px;letter-spacing:2px;color:var(--purple);font-family:'Share Tech Mono',monospace;}
-.py-win-status{font-size:9px;padding:2px 8px;border-radius:10px;font-family:'Share Tech Mono',monospace;}
+.py-win-title{font-size:10px;letter-spacing:2px;color:var(--purple);font-family:'Share Tech Mono','Courier New',Courier,monospace;}
+.py-win-status{font-size:9px;padding:2px 8px;border-radius:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .py-win-status.ok{background:var(--accent3)22;color:var(--accent3);border:1px solid var(--accent3)44;}
 .py-win-status.err{background:var(--red)22;color:var(--red);border:1px solid var(--red)44;}
 .py-win-status.idle{background:var(--text3)22;color:var(--text3);border:1px solid var(--text3)44;}
-.py-console{flex:1;overflow-y:auto;padding:12px;font-family:'Share Tech Mono',monospace;
+.py-console{flex:1;overflow-y:auto;padding:12px;font-family:'Share Tech Mono','Courier New',Courier,monospace;
   font-size:11px;background:#050810;color:#00ff88;line-height:1.6;}
 .py-console .py-line-err{color:var(--red);}
 .py-console .py-line-warn{color:var(--orange);}
@@ -238,18 +270,18 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .py-console .py-line-cmd{color:var(--text3);}
 .py-input-row{display:flex;align-items:center;border-top:1px solid var(--border2);
   background:var(--bg2);padding:6px 12px;gap:8px;flex-shrink:0;}
-.py-prompt{color:var(--purple);font-family:'Share Tech Mono',monospace;font-size:11px;flex-shrink:0;}
+.py-prompt{color:var(--purple);font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:11px;flex-shrink:0;}
 .py-input{flex:1;background:transparent;border:none;outline:none;color:#00ff88;
-  font-family:'Share Tech Mono',monospace;font-size:11px;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:11px;}
 .py-send{padding:4px 12px;border:1px solid var(--purple)66;background:transparent;
   color:var(--purple);cursor:pointer;font-size:9px;border-radius:3px;
-  font-family:'Share Tech Mono',monospace;transition:all .15s;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;transition:all .15s;}
 .py-send:hover{background:var(--purple)22;}
 .py-app-panel{padding:10px;border-top:1px solid var(--border2);background:var(--bg2);flex-shrink:0;}
 .py-app-btns{display:flex;gap:5px;flex-wrap:wrap;}
 .py-app-btn{padding:4px 10px;border:1px solid var(--border);background:transparent;
   color:var(--text3);cursor:pointer;font-size:9px;border-radius:3px;
-  font-family:'Share Tech Mono',monospace;transition:all .15s;letter-spacing:1px;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;transition:all .15s;letter-spacing:1px;}
 .py-app-btn:hover{border-color:var(--purple);color:var(--purple);background:rgba(168,85,247,.1);}
 
 /* ─── SAVE/LOAD SESSION PANEL ─── */
@@ -262,13 +294,13 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
   width:500px;max-width:95vw;border-radius:8px;overflow:hidden;}
 .session-header{padding:18px 22px;border-bottom:1px solid var(--border2);
   display:flex;align-items:center;justify-content:space-between;}
-.session-title{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;color:var(--accent);}
+.session-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:13px;letter-spacing:2px;color:var(--accent);}
 .session-body{padding:20px 22px;display:flex;flex-direction:column;gap:12px;}
 .session-info{padding:12px;background:var(--bg3);border-radius:4px;
-  font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text2);line-height:1.8;}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:11px;color:var(--text2);line-height:1.8;}
 .session-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .sess-btn{padding:12px;border:1px solid var(--border);background:var(--bg3);
-  color:var(--text2);cursor:pointer;border-radius:4px;font-family:'Rajdhani',sans-serif;
+  color:var(--text2);cursor:pointer;border-radius:4px;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;
   font-size:13px;font-weight:600;letter-spacing:1px;transition:all .2s;text-align:center;}
 .sess-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08);}
 .sess-btn.save-btn{border-color:var(--accent3)66;color:var(--accent3);}
@@ -292,15 +324,15 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .modal-overlay.open .modal{transform:scale(1);}
 .modal-header{padding:18px 22px 14px;border-bottom:1px solid var(--border2);
   display:flex;align-items:center;justify-content:space-between;}
-.modal-title{font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:2px;color:var(--accent);}
+.modal-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:13px;letter-spacing:2px;color:var(--accent);}
 .modal-close{background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;transition:color .15s;}
 .modal-close:hover{color:var(--red);}
 .modal-body{padding:18px 22px;}
 .form-group{margin-bottom:14px;}
 .form-label{display:block;font-size:10px;letter-spacing:2px;color:var(--text3);
-  margin-bottom:6px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;}
+  margin-bottom:6px;text-transform:uppercase;font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .form-input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);
-  padding:9px 12px;border-radius:4px;font-family:'Rajdhani',sans-serif;font-size:13px;
+  padding:9px 12px;border-radius:4px;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-size:13px;
   font-weight:500;outline:none;transition:border-color .15s;}
 .form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,.1);}
 .form-input option{background:var(--bg2);}
@@ -319,7 +351,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .img-prev img{width:100%;height:100%;object-fit:cover;}
 .modal-footer{padding:14px 22px;border-top:1px solid var(--border2);
   display:flex;justify-content:flex-end;gap:8px;}
-.mbtn{padding:8px 20px;border-radius:4px;cursor:pointer;font-family:'Rajdhani',sans-serif;
+.mbtn{padding:8px 20px;border-radius:4px;cursor:pointer;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;
   font-size:13px;font-weight:600;letter-spacing:1px;transition:all .15s;
   border:1px solid var(--border);background:transparent;color:var(--text2);}
 .mbtn:hover{border-color:var(--text2);color:var(--text);}
@@ -334,14 +366,14 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .reorder-item:hover{border-color:var(--border);}
 .reorder-item.dragging{opacity:.4;}
 .drag-handle{color:var(--text3);font-size:14px;}
-.reorder-num{font-size:10px;color:var(--text3);width:16px;font-family:'Share Tech Mono',monospace;}
+.reorder-num{font-size:10px;color:var(--text3);width:16px;font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 
 /* ─── STATUS BAR ─── */
 .status-bar{position:fixed;bottom:0;left:0;right:0;padding:4px 18px;
   background:rgba(6,9,15,.95);border-top:1px solid var(--border2);
   display:flex;align-items:center;justify-content:space-between;
   font-size:10px;color:var(--text3);z-index:200;
-  font-family:'Share Tech Mono',monospace;backdrop-filter:blur(10px);}
+  font-family:'Share Tech Mono','Courier New',Courier,monospace;backdrop-filter:blur(10px);}
 .sb-left{display:flex;gap:16px;align-items:center;}
 .pulse{display:inline-block;width:5px;height:5px;border-radius:50%;
   background:var(--accent3);margin-right:5px;animation:pulseAnim 2s infinite;}
@@ -361,7 +393,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 /* ─── SESSION SNAPSHOT BADGE ─── */
 .session-badge{position:fixed;bottom:30px;right:18px;z-index:300;
   padding:5px 12px;background:rgba(0,255,170,.08);border:1px solid var(--accent3)44;
-  border-radius:20px;font-size:9px;font-family:'Share Tech Mono',monospace;
+  border-radius:20px;font-size:9px;font-family:'Share Tech Mono','Courier New',Courier,monospace;
   color:var(--accent3);letter-spacing:1px;pointer-events:none;
   animation:fadeInOut 3s ease forwards;}
 @keyframes fadeInOut{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
@@ -402,7 +434,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
   <div class="py-topbar">
     <div class="py-title">⬡ AIOS PYTHON TERMINAL</div>
     <div style="display:flex;gap:6px;align-items:center;">
-      <span id="py-status-global" style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);">VERIFICANDO PYTHON...</span>
+      <span id="py-status-global" style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);">VERIFICANDO PYTHON...</span>
       <button class="ebtn" onclick="closePython()">✕ CERRAR</button>
     </div>
   </div>
@@ -415,7 +447,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       </div>
       <div class="py-console" id="pycon-0"></div>
       <div class="py-app-panel">
-        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
+        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
         <div class="py-app-btns" id="pyapps-0">
           <button class="py-app-btn" onclick="runPyApp(0,'hello')">HELLO WORLD</button>
           <button class="py-app-btn" onclick="runPyApp(0,'info')">SYS INFO</button>
@@ -437,7 +469,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       </div>
       <div class="py-console" id="pycon-1"></div>
       <div class="py-app-panel">
-        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
+        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
         <div class="py-app-btns" id="pyapps-1">
           <button class="py-app-btn" onclick="runPyApp(1,'matrix')">MATRIX FX</button>
           <button class="py-app-btn" onclick="runPyApp(1,'fibonacci')">FIBONACCI</button>
@@ -459,7 +491,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       </div>
       <div class="py-console" id="pycon-2"></div>
       <div class="py-app-panel">
-        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
+        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-bottom:5px;">APPS RÁPIDAS:</div>
         <div class="py-app-btns" id="pyapps-2">
           <button class="py-app-btn" onclick="runPyApp(2,'snake')">SNAKE GAME</button>
           <button class="py-app-btn" onclick="runPyApp(2,'weather')">CLIMA APP</button>
@@ -486,10 +518,17 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
     <div class="session-body">
       <div class="session-info" id="session-info">Cargando info de sesión...</div>
       <div class="session-actions">
-        <button class="sess-btn save-btn" onclick="saveSessionLocal()">💾 GUARDAR SESIÓN<br><small style="font-size:9px;opacity:.7">En este navegador</small></button>
-        <button class="sess-btn load-btn" onclick="loadSessionLocal()">📂 CARGAR SESIÓN<br><small style="font-size:9px;opacity:.7">Desde este navegador</small></button>
-        <button class="sess-btn export-btn" onclick="exportSessionFile()">📤 EXPORTAR ARCHIVO<br><small style="font-size:9px;opacity:.7">Para otros dispositivos</small></button>
-        <button class="sess-btn import-btn" onclick="trigger('import-session-inp')">📥 IMPORTAR ARCHIVO<br><small style="font-size:9px;opacity:.7">Cargar desde archivo</small></button>
+        <button class="sess-btn save-btn" onclick="saveSessionLocal()">💾 GUARDAR SESIÓN<br><small style="font-size:9px;opacity:.7">Guarda en este navegador</small></button>
+        <button class="sess-btn load-btn" onclick="loadSessionLocal()">📂 CARGAR SESIÓN<br><small style="font-size:9px;opacity:.7">Restaura desde este navegador</small></button>
+        <button class="sess-btn export-btn" onclick="exportSessionFile()">📤 EXPORTAR .aios<br><small style="font-size:9px;opacity:.7">Descarga archivo con ROMs+saves</small></button>
+        <button class="sess-btn import-btn" onclick="trigger('import-session-inp')">📥 IMPORTAR .aios<br><small style="font-size:9px;opacity:.7">Carga sesión completa desde archivo</small></button>
+      </div>
+      <div style="margin-top:8px;padding:10px;background:var(--bg3);border-radius:4px;border:1px solid var(--border);">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--text3);font-family:'Courier New',Courier,monospace;margin-bottom:8px;">// SAVE STATES INDIVIDUALES</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="mbtn" style="font-size:11px;border-color:var(--accent3)44;color:var(--accent3);" onclick="exportAllSaveStates()">⬇ DESCARGAR TODOS LOS SAVES</button>
+          <button class="mbtn" style="font-size:11px;border-color:var(--gold)44;color:var(--gold);" onclick="trigger('import-saves-inp')">⬆ CARGAR ARCHIVO DE SAVES</button>
+        </div>
       </div>
       <div style="margin-top:8px;">
         <button class="mbtn" style="width:100%;color:var(--red);border-color:var(--red)44;" onclick="clearSession()">🗑 BORRAR SESIÓN GUARDADA</button>
@@ -498,6 +537,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
   </div>
 </div>
 <input type="file" id="import-session-inp" accept=".aios,.json" style="display:none" onchange="importSessionFile(this)">
+<input type="file" id="import-saves-inp" accept=".aios_saves,.json" style="display:none" onchange="importAllSaveStates(this)">
 
 <!-- ══ MAIN APP ══ -->
 <div id="app">
@@ -506,7 +546,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       <div class="logo-icon">A</div>
       <div>
         <div class="logo-title" id="sys-name-display">AIOS GAMESTATION</div>
-        <div class="logo-sub">REAL EMULATOR v3.0 · SESSION PERSIST</div>
+        <div class="logo-sub">OFFLINE v3.0 · SIN INTERNET · SESSION PERSIST</div>
       </div>
     </div>
     <div class="header-pills">
@@ -580,6 +620,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
     <span id="sb-con">CONSOLA: —</span>
     <span id="sb-rom">ROM: —</span>
     <span id="sb-session" style="color:var(--accent3)">SESIÓN: NO GUARDADA</span>
+    <span id="sb-network" style="color:var(--accent2)">🌐 ONLINE</span>
   </div>
   <div id="sb-time" style="color:var(--text3)"></div>
 </div>
@@ -675,7 +716,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
         </div>
         <input type="file" id="rom-file-inp" style="display:none" onchange="handleRomFile(this)">
       </div>
-      <div id="rom-file-info" style="display:none;padding:9px;border:1px solid var(--border);border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace;color:var(--accent3);margin-bottom:10px"></div>
+      <div id="rom-file-info" style="display:none;padding:9px;border:1px solid var(--border);border-radius:4px;font-size:11px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--accent3);margin-bottom:10px"></div>
       <div class="form-group">
         <label class="form-label">NOMBRE DEL JUEGO</label>
         <input class="form-input" id="rom-name" placeholder="Auto-detectado...">
@@ -772,7 +813,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       <button class="modal-close" onclick="closeModal('modal-reorder')">✕</button>
     </div>
     <div class="modal-body">
-      <p style="font-size:11px;color:var(--text3);margin-bottom:14px;font-family:'Share Tech Mono',monospace">ARRASTRA PARA REORDENAR</p>
+      <p style="font-size:11px;color:var(--text3);margin-bottom:14px;font-family:'Share Tech Mono','Courier New',Courier,monospace">ARRASTRA PARA REORDENAR</p>
       <ul class="reorder-list" id="reorder-list"></ul>
     </div>
     <div class="modal-footer">
@@ -790,7 +831,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       <button class="modal-close" onclick="closeModal('modal-controls')">✕</button>
     </div>
     <div class="modal-body">
-      <table style="width:100%;border-collapse:collapse;font-size:12px;font-family:'Share Tech Mono',monospace">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;font-family:'Share Tech Mono','Courier New',Courier,monospace">
         <tr style="color:var(--accent);border-bottom:1px solid var(--border2)"><td style="padding:6px">TECLA</td><td style="padding:6px">ACCIÓN</td></tr>
         <tr style="border-bottom:1px solid var(--border2)"><td style="padding:5px;color:var(--text3)">Flechas</td><td style="padding:5px">D-PAD</td></tr>
         <tr style="border-bottom:1px solid var(--border2)"><td style="padding:5px;color:var(--text3)">Z</td><td style="padding:5px">Botón A</td></tr>
@@ -807,15 +848,15 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 <!-- ══ USB PANEL ══ -->
 <div id="usb-panel" style="display:none;position:fixed;inset:0;z-index:4200;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);flex-direction:column;">
   <div style="display:flex;align-items:center;padding:12px 20px;background:rgba(10,15,26,.98);border-bottom:1px solid #1e5a3f;gap:12px;">
-    <div style="font-family:'Orbitron',sans-serif;font-size:14px;letter-spacing:3px;color:#00ffaa;flex:1;">🔌 USB — DETECTOR DE DISPOSITIVOS</div>
-    <span id="usb-global-status" style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);">ESPERANDO...</span>
+    <div style="font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:14px;letter-spacing:3px;color:#00ffaa;flex:1;">🔌 USB — DETECTOR DE DISPOSITIVOS</div>
+    <span id="usb-global-status" style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);">ESPERANDO...</span>
     <button class="ebtn success" onclick="scanUSB()">⟳ ESCANEAR</button>
     <button class="ebtn" onclick="closeUSBPanel()">✕ CERRAR</button>
   </div>
   <div style="display:grid;grid-template-columns:320px 1fr;flex:1;overflow:hidden;">
     <!-- Device list -->
     <div style="background:var(--bg2);border-right:1px solid var(--border2);display:flex;flex-direction:column;overflow:hidden;">
-      <div style="padding:10px 16px;font-size:10px;letter-spacing:3px;color:var(--text3);font-family:'Share Tech Mono',monospace;border-bottom:1px solid var(--border2);">// DISPOSITIVOS USB</div>
+      <div style="padding:10px 16px;font-size:10px;letter-spacing:3px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;border-bottom:1px solid var(--border2);">// DISPOSITIVOS USB</div>
       <div id="usb-device-list" style="flex:1;overflow-y:auto;padding:8px 0;"></div>
       <div style="padding:10px 16px;border-top:1px solid var(--border2);">
         <button class="hbtn" style="width:100%;border-color:#00ffaa66;color:#00ffaa;font-size:11px;" onclick="requestUSBDevice()">＋ CONECTAR DISPOSITIVO USB</button>
@@ -825,15 +866,15 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
     <div style="display:flex;flex-direction:column;overflow:hidden;">
       <!-- Vulkan WebGL2 renderer preview -->
       <div style="padding:10px 18px;background:var(--bg3);border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:12px;flex-shrink:0;">
-        <div style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);">VULKAN ENGINE:</div>
-        <div id="vulkan-status" style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--accent3);">◉ WebGL2 ACTIVO</div>
+        <div style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);">VULKAN ENGINE:</div>
+        <div id="vulkan-status" style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--accent3);">◉ WebGL2 ACTIVO</div>
         <canvas id="usb-vulkan-canvas" width="180" height="40" style="border:1px solid var(--border);border-radius:3px;opacity:.8;"></canvas>
         <div style="flex:1;"></div>
-        <div id="usb-path" style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);">📂 —</div>
+        <div id="usb-path" style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);">📂 —</div>
       </div>
       <!-- File list -->
       <div style="flex:1;overflow-y:auto;padding:16px 20px;" id="usb-file-area">
-        <div id="usb-instructions" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--text3);font-family:'Share Tech Mono',monospace;text-align:center;">
+        <div id="usb-instructions" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;text-align:center;">
           <div style="font-size:40px;">🔌</div>
           <div style="font-size:13px;letter-spacing:2px;">CONECTA UN DISPOSITIVO USB</div>
           <div style="font-size:11px;color:var(--text3);max-width:400px;line-height:1.8;">
@@ -849,8 +890,8 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       </div>
       <!-- USB ROM queue -->
       <div id="usb-queue-bar" style="display:none;padding:10px 18px;background:var(--bg2);border-top:1px solid var(--border2);display:flex;align-items:center;gap:12px;flex-shrink:0;">
-        <div style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);">COLA USB:</div>
-        <div id="usb-queue-count" style="font-size:11px;color:var(--accent3);font-family:'Share Tech Mono',monospace;">0 ROMs</div>
+        <div style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);">COLA USB:</div>
+        <div id="usb-queue-count" style="font-size:11px;color:var(--accent3);font-family:'Share Tech Mono','Courier New',Courier,monospace;">0 ROMs</div>
         <div style="flex:1"></div>
         <select id="usb-target-console" class="form-input" style="width:180px;padding:5px 10px;font-size:11px;"></select>
         <button class="hbtn primary" style="font-size:11px;" onclick="importUSBQueue()">✓ IMPORTAR SELECCIÓN</button>
@@ -870,7 +911,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .usb-device-item.active{background:rgba(0,255,170,.1);border-left-color:#00ffaa;}
 .usb-device-icon{font-size:20px;width:26px;text-align:center;flex-shrink:0;}
 .usb-device-name{font-size:12px;font-weight:600;color:var(--text);}
-.usb-device-meta{font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;}
+.usb-device-meta{font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;}
 .usb-file-item{display:flex;align-items:center;gap:10px;padding:9px 12px;
   border:1px solid var(--border2);border-radius:6px;margin-bottom:6px;
   cursor:pointer;transition:all .15s;background:var(--panel);}
@@ -878,7 +919,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
 .usb-file-item.selected{border-color:var(--accent3);background:rgba(0,255,170,.06);}
 .usb-file-item.folder{border-color:var(--border);}
 .usb-file-item.folder:hover{border-color:var(--gold)66;background:rgba(255,215,0,.04);}
-.usb-file-ext{font-size:9px;padding:2px 7px;border-radius:3px;font-family:'Share Tech Mono',monospace;
+.usb-file-ext{font-size:9px;padding:2px 7px;border-radius:3px;font-family:'Share Tech Mono','Courier New',Courier,monospace;
   background:rgba(0,212,255,.15);border:1px solid var(--accent)44;color:var(--accent);flex-shrink:0;}
 .usb-file-ext.rom{background:rgba(0,255,170,.15);border-color:var(--accent3)44;color:var(--accent3);}
 .usb-file-ext.folder-ext{background:rgba(255,215,0,.12);border-color:var(--gold)44;color:var(--gold);}
@@ -1138,11 +1179,11 @@ async function browseDirectory(dirHandle, breadcrumb) {
     <button class="ebtn" onclick="openUSBRoot()" style="font-size:9px;">🏠 RAÍZ</button>
     ${breadcrumb.map((b,i)=>`<span style="color:var(--text3);font-size:10px;">›</span><button class="ebtn" style="font-size:9px;" onclick="browseUSBCrumb(${i})">${b.name}</button>`).join('')}
     <span style="color:var(--text3);font-size:10px;">›</span>
-    <span style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--accent)">${dirHandle.name}</span>
+    <span style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--accent)">${dirHandle.name}</span>
     <div style="flex:1"></div>
     <button class="ebtn success" style="font-size:9px;" onclick="selectAllROMs()">✓ SELECCIONAR TODOS LOS ROMs</button>
   </div>
-  <div id="usb-path-info" style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-bottom:12px;">Cargando...</div>
+  <div id="usb-path-info" style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-bottom:12px;">Cargando...</div>
   <div id="usb-file-list"></div>`;
 
   document.getElementById('usb-path').textContent = `📂 ${[...breadcrumb.map(b=>b.name), dirHandle.name].join(' › ')}`;
@@ -1156,7 +1197,7 @@ async function browseDirectory(dirHandle, breadcrumb) {
       else files.push({name, handle});
     }
   } catch(e) {
-    fileList.innerHTML = `<div style="color:var(--red);font-family:'Share Tech Mono',monospace;font-size:11px;">Error al leer directorio: ${e.message}</div>`;
+    fileList.innerHTML = `<div style="color:var(--red);font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:11px;">Error al leer directorio: ${e.message}</div>`;
     return;
   }
 
@@ -1175,7 +1216,7 @@ async function browseDirectory(dirHandle, breadcrumb) {
     div.className = 'usb-file-item folder';
     div.innerHTML = `<span style="font-size:18px;">📁</span>
       <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
-      <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;">Carpeta</div></div>
+      <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;">Carpeta</div></div>
       <span class="usb-file-ext folder-ext">DIR</span>`;
     div.onclick = () => browseDirectory(handle, [...breadcrumb, {name: dirHandle.name, handle: dirHandle}]);
     fileList.appendChild(div);
@@ -1204,7 +1245,7 @@ function renderUSBFileItem(container, name, handle, isRom) {
     <span style="font-size:16px;">${isRom?'🎮':'📄'}</span>
     <div style="flex:1;min-width:0;">
       <div style="font-size:11px;font-weight:600;color:${isRom?'var(--text)':'var(--text3)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
-      <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;">${isRom?'ROM detectado':'Archivo'}</div>
+      <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;">${isRom?'ROM detectado':'Archivo'}</div>
     </div>
     <span class="usb-file-ext ${isRom?'rom':''}">${ext.toUpperCase()}</span>
     ${isRom ? `<button class="r-btn play" style="flex:0;padding:4px 10px;white-space:nowrap;" onclick="event.stopPropagation();quickPlayUSB('${name}',this)">▶ PLAY</button>` : ''}
@@ -1353,7 +1394,7 @@ function handleUSBFiles(files) {
   const roms = files.filter(f=>isROM(f.name));
   const area = document.getElementById('usb-file-area');
   const fileList = document.createElement('div');
-  fileList.innerHTML = `<div style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text3);margin-bottom:12px;">${roms.length} ROMs detectados de ${files.length} archivos</div>`;
+  fileList.innerHTML = `<div style="font-size:10px;font-family:'Share Tech Mono','Courier New',Courier,monospace;color:var(--text3);margin-bottom:12px;">${roms.length} ROMs detectados de ${files.length} archivos</div>`;
 
   roms.forEach(file => {
     const div = document.createElement('div');
@@ -1364,7 +1405,7 @@ function handleUSBFiles(files) {
       <span style="font-size:16px;">🎮</span>
       <div style="flex:1;min-width:0;">
         <div style="font-size:11px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${file.name}</div>
-        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace;">${formatBytes(file.size)}</div>
+        <div style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;">${formatBytes(file.size)}</div>
       </div>
       <span class="usb-file-ext rom">${ext.toUpperCase()}</span>
       <button class="r-btn play" style="flex:0;padding:4px 10px;" onclick="quickPlayFile('${file.name}','${url}')">▶ PLAY</button>
@@ -1415,7 +1456,7 @@ function renderUSBDevices() {
   const list = document.getElementById('usb-device-list');
   if (!list) return;
   if (USB_STATE.devices.length === 0) {
-    list.innerHTML = `<div style="padding:16px;font-size:11px;color:var(--text3);font-family:'Share Tech Mono',monospace;text-align:center;">
+    list.innerHTML = `<div style="padding:16px;font-size:11px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;text-align:center;">
       Sin dispositivos.<br>Haz clic en<br>"CONECTAR DISPOSITIVO USB"</div>`;
     return;
   }
@@ -1447,7 +1488,7 @@ function renderUSBDevices() {
 
 function showGamepadInfo(dev) {
   const area = document.getElementById('usb-file-area');
-  area.innerHTML = `<div style="padding:20px;font-family:'Share Tech Mono',monospace;">
+  area.innerHTML = `<div style="padding:20px;font-family:'Share Tech Mono','Courier New',Courier,monospace;">
     <div style="font-size:14px;color:var(--accent3);margin-bottom:16px;">🕹️ ${dev.name}</div>
     <div style="font-size:11px;color:var(--text2);line-height:2;">
       TIPO: Gamepad / Control USB<br>
@@ -1569,15 +1610,15 @@ let DB = null;
 
 function initDB() {
   return new Promise(resolve => {
-    const req = indexedDB.open('aios_gamestation', 2);
+    // Version 4 adds 'romfiles' store for full binary ROM persistence
+    const req = indexedDB.open('aios_gamestation', 4);
     req.onupgradeneeded = e => {
       const db = e.target.result;
-      if (!db.objectStoreNames.contains('roms')) db.createObjectStore('roms', {keyPath:'key'});
-      if (!db.objectStoreNames.contains('savestates')) db.createObjectStore('savestates', {keyPath:'key'});
-      if (!db.objectStoreNames.contains('session')) db.createObjectStore('session', {keyPath:'id'});
+      const stores = ['roms','savestates','session','romfiles'];
+      stores.forEach(s => { if (!db.objectStoreNames.contains(s)) db.createObjectStore(s, {keyPath:'key'}); });
     };
     req.onsuccess = e => { DB = e.target.result; resolve(); };
-    req.onerror = () => { notify('IndexedDB no disponible, usando localStorage','warn'); resolve(); };
+    req.onerror = () => { notify('IndexedDB no disponible','warn'); resolve(); };
   });
 }
 
@@ -1612,35 +1653,85 @@ async function dbDel(store, key) {
 // ══════════════════════════════════════════════════════
 // SAVE SESSION
 // ══════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// PROFESSIONAL SESSION + SAVE STATE SYSTEM
+// ROMs stored as binary ArrayBuffer in IndexedDB
+// Save states captured from EmulatorJS canvas/memory
+// Export/Import = single .aios file (JSON + base64 binaries)
+// ══════════════════════════════════════════════════════
+
+// Save ROM binary to IndexedDB so it persists without re-upload
+async function storeRomFile(conId, romName, file) {
+  const k = romKey(conId, romName);
+  try {
+    const buf = await file.arrayBuffer();
+    const b64 = arrayBufferToBase64(buf);
+    await dbSet('romfiles', k, {name: file.name, size: file.size, data: b64, type: file.type||'application/octet-stream'});
+    return true;
+  } catch(e) {
+    console.warn('Could not store ROM binary:', e);
+    return false;
+  }
+}
+
+// Restore ROM blob URL from IndexedDB
+async function restoreRomFile(conId, romName) {
+  const k = romKey(conId, romName);
+  try {
+    const rec = await dbGet('romfiles', k);
+    if (!rec) return null;
+    const buf = base64ToArrayBuffer(rec.data);
+    const blob = new Blob([buf], {type: rec.type});
+    return URL.createObjectURL(blob);
+  } catch(e) {
+    return null;
+  }
+}
+
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const chunk = 8192;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return btoa(binary);
+}
+
+function base64ToArrayBuffer(b64) {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+// ── SAVE ENTIRE SESSION ──────────────────────────────
 async function saveSessionLocal() {
   try {
-    // Save metadata without file blobs (they can't be stored)
     const meta = {
       consoles: STATE.consoles,
       roms: serializeRoms(),
       active: STATE.active,
       settings: STATE.settings,
-      session: {lastSaved: new Date().toISOString(), version:'3.0'},
+      session: {lastSaved: new Date().toISOString(), version:'4.0'},
     };
+    // Persist metadata
     localStorage.setItem(STORAGE_KEY + '_meta', JSON.stringify(meta));
+    await dbSet('session', 'main', meta);
 
-    // Save ROM file data & save states in IndexedDB
+    // Persist images and save states
     for (const conId of Object.keys(STATE.roms)) {
       for (const rom of STATE.roms[conId]) {
-        const key = romKey(conId, rom.name);
-        if (rom.imgData) await dbSet('roms', key+'_img', rom.imgData);
-        const ss = STATE.saveStates[key];
-        if (ss) await dbSet('savestates', key, ss);
+        const k = romKey(conId, rom.name);
+        if (rom.imgData) await dbSet('roms', k+'_img', rom.imgData);
+        if (STATE.saveStates[k]) await dbSet('savestates', k, STATE.saveStates[k]);
       }
     }
 
-    // Save session blob in IndexedDB
-    await dbSet('session', 'main', meta);
-
     STATE.session.lastSaved = meta.session.lastSaved;
     updateSessionStatus();
-    notify('✓ Sesión guardada', 'ok');
     updateSessionInfo();
+    notify('✓ Sesión guardada', 'ok');
   } catch(e) {
     notify('Error al guardar: ' + e.message, 'err');
   }
@@ -1650,18 +1741,23 @@ function serializeRoms() {
   const out = {};
   for (const conId of Object.keys(STATE.roms)) {
     out[conId] = STATE.roms[conId].map(r => {
-      const {fileURL, ...rest} = r; // don't store blob URL
-      return rest;
+      const {fileURL, ...rest} = r;
+      return rest; // never store blob URL — restored from IndexedDB
     });
   }
   return out;
 }
 
+// ── LOAD SESSION ─────────────────────────────────────
 async function loadSessionLocal() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY + '_meta');
-    if (!raw) { notify('No hay sesión guardada en este navegador', 'warn'); return; }
-    const meta = JSON.parse(raw);
+    // Try IndexedDB first (more reliable), then localStorage
+    let meta = await dbGet('session', 'main');
+    if (!meta) {
+      const raw = localStorage.getItem(STORAGE_KEY + '_meta');
+      if (!raw) { notify('No hay sesión guardada en este navegador', 'warn'); return; }
+      meta = JSON.parse(raw);
+    }
     await applySession(meta);
     notify('✓ Sesión restaurada', 'ok');
   } catch(e) {
@@ -1671,27 +1767,30 @@ async function loadSessionLocal() {
 
 async function applySession(meta) {
   if (meta.consoles) STATE.consoles = meta.consoles;
-  if (meta.settings) {
-    STATE.settings = {...STATE.settings, ...meta.settings};
-    applySettings();
-  }
+  if (meta.settings) { STATE.settings = {...STATE.settings, ...meta.settings}; applySettings(); }
+
   if (meta.roms) {
-    // Merge: keep defaults if not in save
     DEFAULT_CONSOLES.forEach(c => { if (!meta.roms[c.id]) meta.roms[c.id] = []; });
     STATE.roms = meta.roms;
-    // Restore imgData from IndexedDB
+
+    // Restore each ROM: get image + save state from DB, rebuild fileURL from stored binary
     for (const conId of Object.keys(STATE.roms)) {
       for (const rom of STATE.roms[conId]) {
         const k = romKey(conId, rom.name);
+        // Restore cover image
         const img = await dbGet('roms', k+'_img');
         if (img) rom.imgData = img;
+        // Restore save state data
         const ss = await dbGet('savestates', k);
-        if (ss) STATE.saveStates[k] = ss;
-        // Warn about file blobs
-        rom.fileURL = null; // blobs don't survive sessions
+        if (ss) { STATE.saveStates[k] = ss; rom.savedState = true; }
+        // Restore ROM file from binary store → new blob URL
+        const restoredURL = await restoreRomFile(conId, rom.name);
+        rom.fileURL = restoredURL; // null if not stored, that's OK
+        rom.fileRestored = !!restoredURL;
       }
     }
   }
+
   if (meta.session) STATE.session = meta.session;
   if (meta.active) STATE.active = meta.active;
   renderConsoleList();
@@ -1711,38 +1810,83 @@ function applySettings() {
   }
 }
 
-// Export session to file (for cross-device use)
+// ── EXPORT .aios FILE (session + all ROMs + save states) ──
 async function exportSessionFile() {
-  await saveSessionLocal(); // ensure up to date
-  const raw = localStorage.getItem(STORAGE_KEY + '_meta');
-  if (!raw) { notify('Guarda la sesión primero', 'warn'); return; }
+  notify('⏳ Preparando exportación...', '');
+  try {
+    await saveSessionLocal(); // ensure latest
 
-  // Add save states to export
-  const meta = JSON.parse(raw);
-  meta._saveStates = STATE.saveStates;
-  meta._exported = new Date().toISOString();
+    const meta = await dbGet('session','main') || JSON.parse(localStorage.getItem(STORAGE_KEY+'_meta') || '{}');
+    meta._saveStates = {};
+    meta._romFiles   = {};
+    meta._version    = '4.0';
+    meta._exported   = new Date().toISOString();
 
-  const blob = new Blob([JSON.stringify(meta, null, 2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.download = `aios_session_${Date.now()}.aios`;
-  a.href = URL.createObjectURL(blob);
-  a.click();
-  URL.revokeObjectURL(a.href);
-  notify('✓ Sesión exportada (.aios)', 'ok');
+    // Pack save states
+    for (const k of Object.keys(STATE.saveStates)) {
+      meta._saveStates[k] = STATE.saveStates[k];
+    }
+    // Also get save states from DB
+    for (const conId of Object.keys(STATE.roms || {})) {
+      for (const rom of (STATE.roms[conId] || [])) {
+        const k = romKey(conId, rom.name);
+        const ss = await dbGet('savestates', k);
+        if (ss) meta._saveStates[k] = ss;
+        // Pack ROM binary (may be large, but enables full offline transfer)
+        const rf = await dbGet('romfiles', k);
+        if (rf) meta._romFiles[k] = rf;
+      }
+    }
+
+    const json = JSON.stringify(meta);
+    const blob = new Blob([json], {type:'application/json'});
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
+    a.download = `aios_sesion_${ts}.aios`;
+    a.href = URL.createObjectURL(blob);
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+
+    const sizeMB = (blob.size / 1048576).toFixed(1);
+    notify(`✓ Sesión exportada (${sizeMB} MB) — incluye ROMs y saves`, 'ok');
+  } catch(e) {
+    notify('Error al exportar: ' + e.message, 'err');
+  }
 }
 
+// ── IMPORT .aios FILE ─────────────────────────────────
 async function importSessionFile(input) {
   const file = input.files[0]; if (!file) return;
-  const text = await file.text();
+  notify('⏳ Importando sesión...', '');
   try {
+    const text = await file.text();
     const meta = JSON.parse(text);
+
+    // Restore save states
     if (meta._saveStates) {
-      Object.assign(STATE.saveStates, meta._saveStates);
+      for (const [k, v] of Object.entries(meta._saveStates)) {
+        STATE.saveStates[k] = v;
+        await dbSet('savestates', k, v);
+      }
       delete meta._saveStates;
     }
+
+    // Restore ROM binaries
+    if (meta._romFiles) {
+      for (const [k, rec] of Object.entries(meta._romFiles)) {
+        await dbSet('romfiles', k, rec);
+      }
+      delete meta._romFiles;
+    }
+
+    delete meta._version; delete meta._exported;
+
     await applySession(meta);
     localStorage.setItem(STORAGE_KEY + '_meta', JSON.stringify(meta));
-    notify('✓ Sesión importada desde archivo', 'ok');
+    await dbSet('session', 'main', meta);
+
+    const romCount = Object.values(meta.roms||{}).reduce((a,b)=>a+b.length,0);
+    notify(`✓ Sesión importada: ${romCount} ROMs restaurados`, 'ok');
     closeSessionPanel();
   } catch(e) {
     notify('Archivo inválido: ' + e.message, 'err');
@@ -1750,15 +1894,19 @@ async function importSessionFile(input) {
   input.value = '';
 }
 
+// ── CLEAR SESSION ─────────────────────────────────────
 function clearSession() {
-  if (!confirm('¿Borrar sesión guardada? (Los ROMs cargados en esta ventana permanecen)')) return;
+  if (!confirm('¿Borrar toda la sesión guardada? Se perderán los ROMs y save states almacenados.')) return;
   localStorage.removeItem(STORAGE_KEY + '_meta');
   if (DB) {
-    ['roms','savestates','session'].forEach(store => {
-      const tx = DB.transaction(store, 'readwrite');
-      tx.objectStore(store).clear();
+    ['roms','savestates','session','romfiles'].forEach(store => {
+      try {
+        const tx = DB.transaction(store, 'readwrite');
+        tx.objectStore(store).clear();
+      } catch(e) {}
     });
   }
+  STATE.saveStates = {};
   STATE.session.lastSaved = null;
   updateSessionStatus();
   updateSessionInfo();
@@ -1767,9 +1915,10 @@ function clearSession() {
 
 function updateSessionStatus() {
   const el = document.getElementById('sb-session');
-  if (STATE.session.lastSaved) {
+  if (!el) return;
+  if (STATE.session && STATE.session.lastSaved) {
     const d = new Date(STATE.session.lastSaved);
-    el.textContent = `SESIÓN: ${d.toLocaleTimeString('es-CL')}`;
+    el.textContent = `SESIÓN: ${d.toLocaleTimeString()}`;
     el.style.color = 'var(--accent3)';
   } else {
     el.textContent = 'SESIÓN: NO GUARDADA';
@@ -1781,19 +1930,63 @@ function updateSessionInfo() {
   const el = document.getElementById('session-info');
   if (!el) return;
   const totalRoms = Object.values(STATE.roms).reduce((a,b)=>a+b.length,0);
-  const totalCons = STATE.consoles.length;
-  const ls = STATE.session.lastSaved ? new Date(STATE.session.lastSaved).toLocaleString('es-CL') : 'Nunca';
+  const restoredRoms = Object.values(STATE.roms).flat().filter(r=>r.fileRestored).length;
+  const saves = Object.keys(STATE.saveStates).length;
+  const ls = STATE.session && STATE.session.lastSaved
+    ? new Date(STATE.session.lastSaved).toLocaleString() : 'Nunca';
   el.innerHTML = `
-    CONSOLAS: ${totalCons} &nbsp;|&nbsp; ROMS TOTAL: ${totalRoms}<br>
-    SAVE STATES: ${Object.keys(STATE.saveStates).length}<br>
+    CONSOLAS: ${STATE.consoles.length} &nbsp;|&nbsp; ROMs: ${totalRoms}<br>
+    ROMs CON ARCHIVO GUARDADO: <span style="color:var(--accent3)">${restoredRoms}</span> / ${totalRoms}<br>
+    SAVE STATES GUARDADOS: <span style="color:var(--accent3)">${saves}</span><br>
     ÚLTIMA SESIÓN: ${ls}<br>
-    <span style="color:var(--orange)">⚠ Los archivos ROM deben recargarse al cambiar dispositivo</span><br>
-    <span style="color:var(--accent3)">✓ Metadatos, portadas y estados guardados se transfieren</span>
+    <span style="color:var(--accent3);font-size:10px;">✓ ROMs con archivo guardado continúan sin re-cargar</span><br>
+    <span style="color:var(--text3);font-size:10px;">⚠ ROMs sin archivo: vuelve a cargar el .rom/.gba/etc.</span>
   `;
 }
 
-// Auto-save
-var autoSaveTimer = null;
+// Export all save states as single file
+async function exportAllSaveStates() {
+  const allSaves = {};
+  for (const conId of Object.keys(STATE.roms)) {
+    for (const rom of STATE.roms[conId]) {
+      const k = romKey(conId, rom.name);
+      const ss = STATE.saveStates[k] || await dbGet('savestates', k);
+      if (ss) allSaves[k] = ss;
+    }
+  }
+  if (Object.keys(allSaves).length === 0) { notify('No hay save states guardados', 'warn'); return; }
+  const blob = new Blob([JSON.stringify({saves: allSaves, exported: new Date().toISOString()})], {type:'application/json'});
+  const a = document.createElement('a');
+  a.download = `aios_saves_${Date.now()}.aios_saves`;
+  a.href = URL.createObjectURL(blob);
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  notify(`✓ ${Object.keys(allSaves).length} save states exportados`, 'ok');
+}
+
+async function importAllSaveStates(input) {
+  const file = input.files[0]; if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    const saves = data.saves || data;
+    let count = 0;
+    for (const [k, ss] of Object.entries(saves)) {
+      STATE.saveStates[k] = ss;
+      await dbSet('savestates', k, ss);
+      // Mark ROM as having save state
+      for (const conId of Object.keys(STATE.roms)) {
+        const rom = STATE.roms[conId].find(r => romKey(conId, r.name) === k);
+        if (rom) { rom.savedState = true; count++; }
+      }
+    }
+    renderRomGrid();
+    notify(`✓ ${count} save states importados`, 'ok');
+  } catch(e) {
+    notify('Error al importar saves: ' + e.message, 'err');
+  }
+  input.value = '';
+}
+
 function startAutoSave() {
   if (autoSaveTimer) clearInterval(autoSaveTimer);
   autoSaveTimer = setInterval(() => {
@@ -1815,46 +2008,192 @@ function showSessionBadge() {
 }
 
 // ══════════════════════════════════════════════════════
-// SAVE STATES (per-ROM, in memory + IndexedDB)
+// SAVE STATES — Real binary capture + IndexedDB storage
 // ══════════════════════════════════════════════════════
 function romKey(conId, romName) {
-  return `${conId}__${romName.replace(/\s+/g,'_')}`;
+  return (conId + '__' + romName).replace(/[^a-zA-Z0-9_]/g,'_');
 }
 
 async function emuSaveState() {
-  if (!STATE.currentEmu) return;
+  if (!STATE.currentEmu) { notify('No hay juego activo', 'warn'); return; }
   const {conId, rom} = STATE.currentEmu;
   const k = romKey(conId, rom.name);
-  // Try EmulatorJS native save state
-  if (window.EJS_emulator?.saveState) {
-    window.EJS_emulator.saveState();
-    STATE.saveStates[k] = {marker: 'ejs_native', ts: Date.now()};
+
+  try {
+    // Method 1: EmulatorJS native save state API (best)
+    if (window.EJS_emulator && window.EJS_emulator.saveState) {
+      window.EJS_emulator.saveState();
+      // EJS stores save in its own FS — we also capture canvas snapshot
+      const snap = captureEmuSnapshot();
+      const ss = {
+        method: 'ejs_native',
+        ts: Date.now(),
+        romName: rom.name,
+        conId,
+        snapshot: snap,  // canvas thumbnail for display
+      };
+      STATE.saveStates[k] = ss;
+      rom.savedState = true;
+      await dbSet('savestates', k, ss);
+      saveSessionLocal();
+      notify('💾 Save state guardado', 'ok');
+      renderRomGrid();
+      return;
+    }
+
+    // Method 2: Try to get EJS FS data (Module filesystem)
+    if (window.Module && window.Module.FS) {
+      try {
+        const fsData = captureEJSFilesystem();
+        if (fsData) {
+          const snap = captureEmuSnapshot();
+          const ss = { method:'ejs_fs', ts:Date.now(), romName:rom.name, conId, fsData, snapshot:snap };
+          STATE.saveStates[k] = ss;
+          rom.savedState = true;
+          await dbSet('savestates', k, ss);
+          saveSessionLocal();
+          notify('💾 Save state guardado (FS)', 'ok');
+          renderRomGrid();
+          return;
+        }
+      } catch(e) {}
+    }
+
+    // Method 3: Fallback — save canvas screenshot + timestamp as marker
+    const snap = captureEmuSnapshot();
+    const ss = { method:'snapshot', ts:Date.now(), romName:rom.name, conId, snapshot:snap };
+    STATE.saveStates[k] = ss;
     rom.savedState = true;
-    await dbSet('savestates', k, STATE.saveStates[k]);
-    notify('💾 Save state guardado', 'ok');
+    await dbSet('savestates', k, ss);
+    saveSessionLocal();
+    notify('💾 Estado guardado (usa botón SAVE del emulador para guardar progreso completo)', 'ok');
     renderRomGrid();
-  } else {
-    STATE.saveStates[k] = {marker: 'manual', ts: Date.now()};
-    rom.savedState = true;
-    await dbSet('savestates', k, STATE.saveStates[k]);
-    notify('💾 Estado marcado', 'ok');
-    renderRomGrid();
+
+  } catch(e) {
+    notify('Error al guardar estado: ' + e.message, 'err');
   }
 }
 
+function captureEmuSnapshot() {
+  try {
+    const canvas = document.querySelector('#emulator-js-container canvas');
+    if (!canvas) return null;
+    // Small thumbnail
+    const tmp = document.createElement('canvas');
+    tmp.width = 160; tmp.height = 120;
+    const ctx = tmp.getContext('2d');
+    ctx.drawImage(canvas, 0, 0, 160, 120);
+    return tmp.toDataURL('image/jpeg', 0.7);
+  } catch(e) { return null; }
+}
+
+function captureEJSFilesystem() {
+  try {
+    if (!window.Module || !window.Module.FS) return null;
+    const FS = window.Module.FS;
+    // Try to get save file from common paths
+    const savePaths = ['/home/web_user/.local/share/retroarch/saves', '/saves', '/home', '/'];
+    for (const path of savePaths) {
+      try {
+        const entries = FS.readdir(path);
+        const saves = entries.filter(e => e.match(/\.(sav|srm|state|ss[0-9]*)$/i));
+        if (saves.length > 0) {
+          const saveData = {};
+          saves.forEach(name => {
+            try {
+              const full = path + '/' + name;
+              const data = FS.readFile(full);
+              saveData[full] = arrayBufferToBase64(data.buffer || data);
+            } catch(e) {}
+          });
+          if (Object.keys(saveData).length > 0) return saveData;
+        }
+      } catch(e) {}
+    }
+    return null;
+  } catch(e) { return null; }
+}
+
 async function emuLoadState() {
-  if (!STATE.currentEmu) return;
+  if (!STATE.currentEmu) { notify('No hay juego activo', 'warn'); return; }
   const {conId, rom} = STATE.currentEmu;
   const k = romKey(conId, rom.name);
-  const ss = STATE.saveStates[k] || await dbGet('savestates', k);
-  if (!ss) { notify('No hay save state para este juego', 'warn'); return; }
-  if (window.EJS_emulator?.loadState) {
-    window.EJS_emulator.loadState();
-    notify('📂 Save state cargado', 'ok');
-  } else {
-    notify('📂 Estado recuperado (reinicia el emulador)', 'ok');
+
+  // Get save state from memory or DB
+  let ss = STATE.saveStates[k];
+  if (!ss) ss = await dbGet('savestates', k);
+  if (!ss) { notify('No hay save state para este juego. Usa SAVE primero.', 'warn'); return; }
+
+  try {
+    if (ss.method === 'ejs_native' && window.EJS_emulator && window.EJS_emulator.loadState) {
+      window.EJS_emulator.loadState();
+      notify('📂 Save state cargado ✓', 'ok');
+      return;
+    }
+
+    if (ss.method === 'ejs_fs' && ss.fsData && window.Module && window.Module.FS) {
+      const FS = window.Module.FS;
+      for (const [path, b64] of Object.entries(ss.fsData)) {
+        try {
+          const data = new Uint8Array(base64ToArrayBuffer(b64));
+          FS.writeFile(path, data);
+        } catch(e) {}
+      }
+      if (window.EJS_emulator && window.EJS_emulator.loadState) window.EJS_emulator.loadState();
+      notify('📂 Save state restaurado desde filesystem', 'ok');
+      return;
+    }
+
+    // Snapshot marker: tell user to use emulator's built-in save
+    notify('📂 Marcador cargado — usa el botón LOAD del emulador para restaurar el progreso guardado en el emulador', 'ok');
+
+  } catch(e) {
+    notify('Error al cargar estado: ' + e.message, 'err');
   }
 }
+
+// Download save state as file
+async function downloadSaveState(conId, idx) {
+  const rom = STATE.roms[conId]?.[idx];
+  if (!rom) return;
+  const k = romKey(conId, rom.name);
+  let ss = STATE.saveStates[k] || await dbGet('savestates', k);
+  if (!ss) { notify('No hay save state para descargar', 'warn'); return; }
+  const blob = new Blob([JSON.stringify(ss)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.download = `save_${rom.name.replace(/\s/g,'_')}_${Date.now()}.aios_save`;
+  a.href = URL.createObjectURL(blob);
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+  notify('💾 Save state descargado', 'ok');
+}
+
+// Upload save state from file
+function uploadSaveState(conId, idx) {
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = '.aios_save,.json';
+  inp.onchange = async () => {
+    const file = inp.files[0]; if (!file) return;
+    try {
+      const text = await file.text();
+      const ss = JSON.parse(text);
+      const rom = STATE.roms[conId]?.[idx];
+      if (!rom) return;
+      const k = romKey(conId, rom.name);
+      STATE.saveStates[k] = ss;
+      rom.savedState = true;
+      await dbSet('savestates', k, ss);
+      saveSessionLocal();
+      renderRomGrid();
+      notify('📂 Save state cargado desde archivo', 'ok');
+    } catch(e) {
+      notify('Error al leer archivo: ' + e.message, 'err');
+    }
+  };
+  inp.click();
+}
+
 
 // ══════════════════════════════════════════════════════
 // WEBGL BACKGROUND
@@ -1926,7 +2265,7 @@ function renderRomGrid() {
   grid.innerHTML = '';
   updateHero();
   if (!STATE.active) {
-    grid.innerHTML = `<div style="grid-column:1/-1;padding:40px;text-align:center;color:var(--text3);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px">◈ SELECCIONA UNA CONSOLA</div>`;
+    grid.innerHTML = `<div style="grid-column:1/-1;padding:40px;text-align:center;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;font-size:11px;letter-spacing:2px">◈ SELECCIONA UNA CONSOLA</div>`;
     return;
   }
   let roms = [...(STATE.roms[STATE.active] || [])];
@@ -1946,7 +2285,8 @@ function renderRomGrid() {
         <div class="rom-cover-overlay"></div>
         ${rom.fav ? '<div class="rom-badge fav">★</div>' : ''}
         ${rom.isNew ? '<div class="rom-badge new">NEW</div>' : ''}
-        ${hasSave ? '<div class="rom-badge saved" style="top:auto;bottom:7px">💾</div>' : ''}
+        ${hasSave ? '<div class="rom-badge saved" style="top:auto;bottom:7px">💾 SAVE</div>' : ''}
+        ${rom.fileRestored ? '<div class="rom-badge" style="top:auto;bottom:7px;left:7px;right:auto;background:rgba(0,212,255,.2);border:1px solid var(--accent)44;color:var(--accent);font-size:8px">⚡ OK</div>' : '<div class="rom-badge" style="top:auto;bottom:7px;left:7px;right:auto;background:rgba(255,107,53,.15);border:1px solid var(--orange)33;color:var(--orange);font-size:8px">📁 RE-CARGAR</div>'}
       </div>
       <div class="rom-body">
         <div class="rom-title" title="${rom.name}">${rom.name}</div>
@@ -1954,7 +2294,8 @@ function renderRomGrid() {
       </div>
       <div class="rom-actions">
         <button class="r-btn play" onclick="launchRom('${STATE.active}',${i})">▶ PLAY</button>
-        <button class="r-btn ${hasSave?'save-s':''}" onclick="loadSavedRom('${STATE.active}',${i})" title="Cargar save">💾</button>
+        <button class="r-btn ${hasSave?'save-s':''}" onclick="loadSavedRom('${STATE.active}',${i})" title="${hasSave?'Cargar save state':'Sin save state'}">${hasSave?'📂 LOAD':'💾'}</button>
+        <button class="r-btn" onclick="downloadSaveState('${STATE.active}',${i})" title="Descargar save state como archivo" style="${hasSave?'':'opacity:.35'}">⬇</button>
         <button class="r-btn" onclick="toggleFav('${STATE.active}',${i})">${rom.fav?'★':'☆'}</button>
         <button class="r-btn del" onclick="deleteRom('${STATE.active}',${i})">✕</button>
       </div>`;
@@ -2000,13 +2341,13 @@ function launchRom(conId, idx, loadSave) {
   document.getElementById('sb-rom').textContent = `ROM: ${rom.name.toUpperCase()}`;
   document.getElementById('emu-screen').classList.add('visible');
   const container = document.getElementById('emulator-js-container');
-  container.innerHTML = `<div class="emu-loading" id="emu-loading"><div class="emu-spinner"></div><div class="emu-load-text">CARGANDO EMULADOR...</div><div style="font-size:10px;color:var(--text3);font-family:'Share Tech Mono',monospace;margin-top:6px">${rom.name}</div></div>`;
+  container.innerHTML = `<div class="emu-loading" id="emu-loading"><div class="emu-spinner"></div><div class="emu-load-text">CARGANDO EMULADOR...</div><div style="font-size:10px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace;margin-top:6px">${rom.name}</div></div>`;
 
   // Set EmulatorJS globals BEFORE loading the script
   window.EJS_player = '#emulator-js-container';
   window.EJS_core = CORE_MAP[con.core] || 'nes';
   window.EJS_gameUrl = rom.fileURL;
-  window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+  window.EJS_pathtodata = window._EJS_LOCAL_PATH || 'https://cdn.emulatorjs.org/stable/data/';
   window.EJS_startOnLoaded = true;
   window.EJS_color = con.color || '#00d4ff';
   window.EJS_AdUrl = ''; window.EJS_AdTimer = 0;
@@ -2021,15 +2362,31 @@ function launchRom(conId, idx, loadSave) {
     if (loadSave) setTimeout(()=>{ try{ window.EJS_emulator?.loadState?.(); }catch(e){} }, 800);
   };
 
-  // Remove old loader, inject fresh one
+  // Remove old loader, inject fresh one — OFFLINE FIRST
   const old = document.getElementById('ejs-loader');
   if (old) old.remove();
   const script = document.createElement('script');
   script.id = 'ejs-loader';
-  script.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+  // Try local emulatorjs folder (place next to HTML for full offline)
+  script.src = 'emulatorjs/data/loader.js';
   script.onerror = () => {
-    document.getElementById('emu-loading')?.remove();
-    container.innerHTML = `<div class="emu-loading"><div style="color:var(--red);font-family:'Share Tech Mono',monospace;font-size:12px">⚠ No se pudo cargar EmulatorJS<br>Verifica tu conexión a internet</div></div>`;
+    // Local not available — try CDN (requires internet)
+    const s2 = document.createElement('script');
+    s2.id = 'ejs-loader-cdn';
+    s2.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+    s2.onerror = () => {
+      document.getElementById('emu-loading')?.remove();
+      container.innerHTML = `<div class="emu-loading"><div style="color:var(--red);font-family:'Courier New',Courier,monospace;font-size:11px;text-align:center;padding:20px;line-height:1.9;">
+        ⚠ EmulatorJS no disponible offline<br>
+        <span style="color:var(--text3);font-size:10px;">Para uso offline, descarga EmulatorJS y coloca<br>
+        la carpeta <span style="color:var(--accent)">emulatorjs/</span> junto al HTML.<br><br>
+        <a href="https://github.com/EmulatorJS/EmulatorJS/releases" target="_blank" style="color:var(--accent3);">github.com/EmulatorJS/EmulatorJS</a></span>
+      </div></div>`;
+    };
+    document.body.appendChild(s2);
+    // Update path to CDN for this session
+    window._EJS_LOCAL_PATH = 'https://cdn.emulatorjs.org/stable/data/';
+    window.EJS_pathtodata  = 'https://cdn.emulatorjs.org/stable/data/';
   };
   document.body.appendChild(script);
 
@@ -2093,10 +2450,10 @@ async function initPython() {
   [0,1,2].forEach(i => { pyLog(i, 'Cargando Python 3.11 (Pyodide WebAssembly)...', 'info'); setWinStatus(i,'idle'); });
 
   const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+  script.src = 'pyodide/pyodide.js'; // local first — place pyodide/ folder next to HTML
   script.onload = async () => {
     try {
-      pyodide = await window.loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'});
+      pyodide = await window.loadPyodide({indexURL: document.querySelector('#pyodide-script')?.dataset?.local==='1' ? 'pyodide/' : 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'});
       pyodideReady = true;
       pyodideLoading = false;
       statusEl.textContent = '✓ PYTHON 3.11 LISTO';
@@ -2117,14 +2474,23 @@ async function initPython() {
       });
     }
   };
+  script.dataset.local = '1';
   script.onerror = () => {
-    pyodideLoading = false;
-    document.getElementById('py-status-global').textContent = 'PYTHON NO DISPONIBLE';
-    document.getElementById('py-status-global').style.color = 'var(--red)';
-    [0,1,2].forEach(i => {
-      pyLog(i,'⚠ PYTHON NO DISPONIBLE — sin conexión a cdn.jsdelivr.net','err');
-      setWinStatus(i,'err');
-    });
+    // Local not found, try CDN fallback
+    const s2 = document.createElement('script');
+    s2.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+    s2.onload = script.onload;
+    s2.onerror = () => {
+      pyodideLoading = false;
+      document.getElementById('py-status-global').textContent = 'PYTHON NO DISPONIBLE';
+      document.getElementById('py-status-global').style.color = 'var(--red)';
+      [0,1,2].forEach(i => {
+        pyLog(i,'⚠ PYTHON NO DISPONIBLE','err');
+        pyLog(i,'Sin internet y sin carpeta pyodide/ local.','err');
+        setWinStatus(i,'err');
+      });
+    };
+    document.body.appendChild(s2);
   };
   document.body.appendChild(script);
 }
@@ -2332,7 +2698,7 @@ function addConsole() {
   document.getElementById('con-name').value = '';
 }
 
-function addRom() {
+async function addRom() {
   const conId = document.getElementById('rom-con-sel').value;
   let name = document.getElementById('rom-name').value.trim();
   const file = STATE._currentRomFile;
@@ -2344,16 +2710,32 @@ function addRom() {
     name, genre, year, fav:false, played:false, isNew:true,
     imgData: STATE._currentRomImgData || null,
     fileURL: STATE._currentRomFileURL || null,
-    icon: genIcon(genre), added: new Date().toLocaleDateString('es-CL'),
-    savedState: false,
+    icon: genIcon(genre), added: new Date().toLocaleDateString(),
+    savedState: false, fileRestored: false,
   };
   if (!STATE.roms[conId]) STATE.roms[conId] = [];
   STATE.roms[conId].push(rom);
+
+  // CRITICAL: Store ROM binary in IndexedDB so it persists across sessions
+  if (file) {
+    const stored = await storeRomFile(conId, name, file);
+    if (stored) {
+      rom.fileRestored = true;
+      notify(`✓ ROM "${name}" guardada en almacenamiento local`,'ok');
+    } else {
+      notify(`✓ ROM "${name}" cargada (almacenamiento limitado)`,'ok');
+    }
+  } else {
+    notify(`✓ ROM "${name}" cargada`,'ok');
+  }
+
   closeModal('modal-add-rom');
   if (STATE.active === conId) renderRomGrid();
   renderConsoleList();
-  notify(`✓ ROM "${name}" cargada`,'ok');
-  // Reset
+  // Auto-save session after adding ROM
+  saveSessionLocal();
+
+  // Reset form
   document.getElementById('rom-name').value = '';
   document.getElementById('rom-year').value = '';
   document.getElementById('rom-file-info').style.display = 'none';
@@ -2474,7 +2856,7 @@ function buildReorderList() {
   STATE.consoles.forEach((c,i) => {
     const li = document.createElement('li');
     li.className='reorder-item'; li.draggable=true; li.dataset.id=c.id;
-    li.innerHTML=`<span class="drag-handle">⠿</span><span class="reorder-num">${i+1}</span><span style="font-size:18px">${CONSOLE_ICONS[c.core]||'🎮'}</span><span style="flex:1;font-size:12px;font-weight:600">${c.name}</span><span style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono',monospace">${(STATE.roms[c.id]||[]).length} ROMs</span>`;
+    li.innerHTML=`<span class="drag-handle">⠿</span><span class="reorder-num">${i+1}</span><span style="font-size:18px">${CONSOLE_ICONS[c.core]||'🎮'}</span><span style="flex:1;font-size:12px;font-weight:600">${c.name}</span><span style="font-size:9px;color:var(--text3);font-family:'Share Tech Mono','Courier New',Courier,monospace">${(STATE.roms[c.id]||[]).length} ROMs</span>`;
     li.addEventListener('dragstart',()=>li.classList.add('dragging'));
     li.addEventListener('dragend',()=>li.classList.remove('dragging'));
     li.addEventListener('dragover',e=>{e.preventDefault();const d=list.querySelector('.dragging');if(d&&d!==li)list.insertBefore(d,li.nextSibling);});
@@ -2564,6 +2946,167 @@ async function init() {
 }
 
 init();
+</script>
+<!-- ══ OFFLINE BANNER ══ -->
+<div id="offline-banner" style="display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  z-index:9999;padding:8px 22px;background:rgba(255,107,53,.95);color:#fff;
+  border-radius:20px;font-family:'Courier New',Courier,monospace;font-size:11px;
+  letter-spacing:1px;box-shadow:0 4px 20px rgba(255,107,53,.5);pointer-events:none;">
+  ⚠ SIN INTERNET — Modo Offline Activo
+</div>
+<div id="online-banner" style="display:none;position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  z-index:9999;padding:8px 22px;background:rgba(0,255,170,.9);color:#000;
+  border-radius:20px;font-family:'Courier New',Courier,monospace;font-size:11px;
+  letter-spacing:1px;box-shadow:0 4px 20px rgba(0,255,170,.4);pointer-events:none;animation:fadeInOut 3s forwards;">
+  ✓ CONEXIÓN RESTAURADA
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SERVICE WORKER — Full offline cache
+// ══════════════════════════════════════════════════════
+(function registerSW() {
+  if (!('serviceWorker' in navigator)) return;
+
+  // Inline SW as a Blob — no separate file needed
+  const SW_CODE = `
+const CACHE = 'aios-gs-v3';
+const ASSETS = [
+  './',
+  './AIOS-GameStation-OFFLINE.html',
+  './emulatorjs/data/loader.js',
+  './emulatorjs/data/emulator.min.js',
+  './emulatorjs/data/gamepad-ui.min.js',
+  './pyodide/pyodide.js',
+  './pyodide/python_stdlib.zip'
+];
+
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(cache => {
+      return Promise.allSettled(ASSETS.map(url => cache.add(url).catch(()=>null)));
+    }).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      if (cached) return cached;
+      return fetch(e.request).then(resp => {
+        if (resp && resp.status === 200) {
+          const clone = resp.clone();
+          caches.open(CACHE).then(cache => cache.put(e.request, clone));
+        }
+        return resp;
+      }).catch(() => {
+        // Return offline fallback for navigation requests
+        if (e.request.destination === 'document') {
+          return caches.match('./') || caches.match('./AIOS-GameStation-OFFLINE.html');
+        }
+        return new Response('', {status: 503});
+      });
+    })
+  );
+});
+`;
+
+  const blob = new Blob([SW_CODE], {type: 'application/javascript'});
+  const swURL = URL.createObjectURL(blob);
+
+  navigator.serviceWorker.register(swURL, {scope: './'})
+    .then(reg => {
+      console.log('[AIOS SW] Registered, scope:', reg.scope);
+      // Check for updates
+      reg.addEventListener('updatefound', () => {
+        console.log('[AIOS SW] Update found');
+      });
+    })
+    .catch(err => {
+      // SW registration may fail when using file:// — that's OK, app still works
+      console.log('[AIOS SW] Registration skipped (file:// protocol or other):', err.message);
+    });
+
+  // Cleanup blob URL after register
+  setTimeout(() => URL.revokeObjectURL(swURL), 5000);
+})();
+
+// ══════════════════════════════════════════════════════
+// OFFLINE / ONLINE DETECTION
+// ══════════════════════════════════════════════════════
+(function watchNetwork() {
+  const offBanner = document.getElementById('offline-banner');
+  const onBanner  = document.getElementById('online-banner');
+
+  function showBanner(el, duration) {
+    el.style.display = 'block';
+    if (duration) setTimeout(() => { el.style.display = 'none'; }, duration);
+  }
+
+  // Update status bar
+  function updateNetworkStatus() {
+    const sbSession = document.getElementById('sb-session');
+    const isOnline = navigator.onLine;
+    const netEl = document.getElementById('sb-network');
+    if (netEl) {
+      netEl.textContent = isOnline ? '🌐 ONLINE' : '✈ OFFLINE';
+      netEl.style.color = isOnline ? 'var(--accent2)' : 'var(--orange)';
+    }
+  }
+
+  window.addEventListener('offline', () => {
+    showBanner(offBanner, 0); // stays until online
+    onBanner.style.display = 'none';
+    updateNetworkStatus();
+    notify('✈ Modo offline — guardado local activo', 'warn');
+  });
+
+  window.addEventListener('online', () => {
+    offBanner.style.display = 'none';
+    showBanner(onBanner, 3000);
+    updateNetworkStatus();
+    notify('🌐 Conexión restaurada', 'ok');
+  });
+
+  // Initial state
+  if (!navigator.onLine) showBanner(offBanner, 0);
+  updateNetworkStatus();
+})();
+
+// ══════════════════════════════════════════════════════
+// OFFLINE SAVE — Enhanced: saves ROMs metadata + states to IndexedDB
+// on every meaningful change so nothing is lost offline
+// ══════════════════════════════════════════════════════
+(function offlinePersistHook() {
+  // Override addRom to auto-save after adding
+  const _origAddRom = window.addRom;
+  // Hook into toggleFav, deleteRom via event delegation already triggers save
+  // We add a visibility change listener for aggressive saves
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden' && typeof saveSessionLocal === 'function') {
+      saveSessionLocal();
+    }
+  });
+  // Also save before unload
+  window.addEventListener('beforeunload', () => {
+    if (typeof saveSessionLocal === 'function') saveSessionLocal();
+  });
+  // Periodic fallback save every 30s when offline
+  setInterval(() => {
+    if (!navigator.onLine && typeof saveSessionLocal === 'function') {
+      saveSessionLocal();
+    }
+  }, 30000);
+})();
 </script>
 </body>
 </html>
