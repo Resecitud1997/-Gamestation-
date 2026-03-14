@@ -397,6 +397,85 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
   color:var(--accent3);letter-spacing:1px;pointer-events:none;
   animation:fadeInOut 3s ease forwards;}
 @keyframes fadeInOut{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+/* ─── GUIDE PANEL ─── */
+.guide-hero{position:relative;padding:28px 32px;overflow:hidden;border-bottom:1px solid var(--border2);background:linear-gradient(135deg,#060920,#0a1628,#060920);}
+.guide-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#060920,#0a1628);}
+.guide-hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border2) 1px,transparent 1px),linear-gradient(90deg,var(--border2) 1px,transparent 1px);background-size:40px 40px;opacity:.25;}
+.guide-hero-content{position:relative;z-index:2;}
+.guide-main-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:2px;text-shadow:0 0 30px var(--accent3),0 0 60px var(--accent3)44;}
+.guide-main-sub{font-size:12px;color:var(--text2);margin-top:5px;letter-spacing:1px;}
+.guide-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.gchip{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg3);color:var(--text3);font-size:11px;font-family:'Courier New',Courier,monospace;letter-spacing:1px;}
+.guide-index{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;padding:16px;margin:20px 0;}
+.guide-index-title{font-size:10px;letter-spacing:3px;color:var(--text3);font-family:'Courier New',Courier,monospace;margin-bottom:12px;}
+.guide-index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px;}
+.gidx-item{padding:7px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--accent);font-size:12px;cursor:pointer;transition:all .15s;font-family:'Courier New',Courier,monospace;}
+.gidx-item:hover{border-color:var(--accent3);color:var(--accent3);background:rgba(0,255,170,.06);}
+.guide-section{margin:24px 0;border:1px solid var(--border2);border-radius:8px;overflow:hidden;}
+.guide-sec-header{display:flex;align-items:center;gap:16px;padding:16px 20px;background:linear-gradient(90deg,var(--bg2),var(--bg));border-bottom:1px solid var(--border2);}
+.guide-sec-num{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:28px;font-weight:900;color:var(--border);flex-shrink:0;line-height:1;}
+.guide-sec-title{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:1px;}
+.guide-sec-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:'Courier New',Courier,monospace;}
+.guide-body{padding:20px;background:var(--bg);color:var(--text2);font-size:13px;line-height:1.7;}
+.guide-body p{margin-bottom:12px;}
+.guide-body strong{color:var(--text);}
+.guide-body code{background:var(--bg3);border:1px solid var(--border);padding:1px 6px;border-radius:3px;font-family:'Courier New',Courier,monospace;font-size:11px;color:var(--accent);}
+.guide-callout{display:flex;gap:12px;padding:12px 16px;border-radius:6px;margin:12px 0;font-size:12px;align-items:flex-start;}
+.guide-callout.info{background:rgba(0,212,255,.06);border:1px solid var(--accent)33;color:var(--text2);}
+.guide-callout.warn{background:rgba(255,107,53,.06);border:1px solid var(--orange)44;color:var(--text2);}
+.guide-callout.ok{background:rgba(0,255,170,.06);border:1px solid var(--accent3)33;color:var(--text2);}
+.gcallout-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.guide-table{border:1px solid var(--border2);border-radius:6px;overflow:hidden;margin:12px 0;font-size:11px;}
+.gt-head{display:grid;grid-template-columns:repeat(4,1fr);padding:8px 12px;background:var(--bg3);color:var(--text3);font-family:'Courier New',Courier,monospace;letter-spacing:1px;font-size:10px;gap:8px;}
+.gt-row{display:grid;grid-template-columns:repeat(4,1fr);padding:8px 12px;border-top:1px solid var(--border2);color:var(--text2);gap:8px;transition:background .15s;}
+.gt-row:hover{background:rgba(0,212,255,.04);}
+.guide-table .gt-head:has(+.gt-row:first-child+.gt-row){} /* 3-col */
+.guide-checklist{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.gcl-item{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border-radius:6px;background:var(--bg3);border:1px solid var(--border2);font-size:12px;}
+.gcl-item.done{border-color:var(--accent3)33;background:rgba(0,255,170,.04);}
+.gcl-item.opt{opacity:.7;}
+.gcl-icon{width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--accent3);}
+.gcl-item:not(.done) .gcl-icon{color:var(--accent);}
+.guide-steps{display:flex;flex-direction:column;gap:0;}
+.gstep{display:flex;gap:0;position:relative;}
+.gstep:not(:last-child)::after{content:'';position:absolute;left:20px;top:44px;bottom:0;width:2px;background:var(--border2);z-index:0;}
+.gstep-num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-family:'Orbitron','Segoe UI',system-ui,sans-serif;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;margin-top:2px;}
+.gstep-body{flex:1;padding:0 0 22px 16px;}
+.gstep-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.gstep-desc{font-size:12px;color:var(--text2);line-height:1.7;}
+.guide-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.gopt{padding:12px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;}
+.gopt-title{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.gopt-desc{font-size:11px;color:var(--text3);}
+.guide-emu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:14px;}
+.gemu-card{padding:14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;transition:all .2s;}
+.gemu-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.gemu-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px;}
+.gemu-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.gemu-core{font-size:10px;font-family:'Courier New',Courier,monospace;color:var(--text3);margin-bottom:4px;}
+.gemu-exts{font-size:10px;font-family:'Courier New',Courier,monospace;color:var(--accent);margin-bottom:6px;}
+.gemu-rating{font-size:10px;color:var(--gold);margin-bottom:6px;}
+.gemu-tip{font-size:10px;color:var(--text3);line-height:1.6;}
+.guide-save-methods{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.gsave-method{padding:16px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;}
+.gsave-icon{font-size:28px;margin-bottom:8px;}
+.gsave-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.gsave-desc{font-size:11px;color:var(--text2);margin-bottom:10px;line-height:1.6;}
+.gsave-how{display:flex;flex-direction:column;gap:5px;}
+.gsave-step{font-size:11px;color:var(--text3);font-family:'Courier New',Courier,monospace;padding:4px 8px;background:var(--bg2);border-radius:3px;}
+.guide-faq{display:flex;flex-direction:column;gap:10px;}
+.gfaq{padding:14px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;}
+.gfaq-q{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:7px;}
+.gfaq-a{font-size:12px;color:var(--text2);line-height:1.7;}
+.guide-inline-btn{padding:3px 10px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);cursor:pointer;font-size:11px;border-radius:3px;font-family:'Rajdhani','Segoe UI',system-ui,sans-serif;font-weight:600;transition:all .15s;}
+.guide-inline-btn:hover{border-color:var(--accent);color:var(--accent);}
+@media(max-width:700px){
+  .guide-opts,.guide-save-methods{grid-template-columns:1fr;}
+  .guide-emu-grid{grid-template-columns:1fr 1fr;}
+  .gt-head,.gt-row{grid-template-columns:1fr 1fr;}
+  .gt-head span:nth-child(3),.gt-head span:nth-child(4),.gt-row span:nth-child(3),.gt-row span:nth-child(4){display:none;}
+}
 </style>
 </head>
 <body>
@@ -553,6 +632,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
       <button class="pill active" id="pill-lib" onclick="setView('library',this)">LIBRERÍA</button>
       <button class="pill" id="pill-rec" onclick="setView('recent',this)">RECIENTES</button>
       <button class="pill" id="pill-fav" onclick="setView('favorites',this)">FAVORITOS</button>
+      <button class="pill" id="pill-guide" onclick="setView('guide',this)" style="border-color:var(--accent3)44;color:var(--accent3);">📖 GUÍA ÁTOMOS</button>
     </div>
     <div class="header-right">
       <button class="hbtn usb-btn" id="usb-header-btn" onclick="openUSBPanel()">🔌 USB <span id="usb-badge" style="display:none;background:var(--accent3);color:#000;border-radius:10px;padding:1px 6px;font-size:9px;margin-left:4px">0</span></button>
@@ -610,6 +690,449 @@ header{display:flex;align-items:center;justify-content:space-between;padding:12p
         <div class="section-title" id="section-label">BIBLIOTECA</div>
         <div class="rom-grid" id="rom-grid"></div>
       </div>
+
+      <!-- ══ GUÍA ÁTOMOS ══ -->
+      <div id="guide-panel" style="display:none;padding:0 0 40px 0;">
+        <div class="guide-hero">
+          <div class="guide-hero-bg"></div>
+          <div class="guide-hero-grid"></div>
+          <div class="guide-hero-content">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:10px;">
+              <div style="font-size:40px;filter:drop-shadow(0 0 12px var(--accent3));">⚛</div>
+              <div>
+                <div class="guide-main-title">GUÍA PARA ÁTOMOS</div>
+                <div class="guide-main-sub">Cómo emular correctamente en AIOS GameStation · Método profesional completo</div>
+              </div>
+            </div>
+            <div class="guide-chips">
+              <span class="gchip">📖 Tutorial completo</span>
+              <span class="gchip" style="border-color:var(--accent3)44;color:var(--accent3);">⚛ Átomos USB</span>
+              <span class="gchip" style="border-color:var(--gold)44;color:var(--gold);">💾 Save States</span>
+              <span class="gchip" style="border-color:var(--purple)44;color:var(--purple);">🔌 USB Drive</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- INDEX -->
+        <div style="padding:20px 28px 0;">
+          <div class="guide-index">
+            <div class="guide-index-title">// ÍNDICE</div>
+            <div class="guide-index-grid">
+              <a class="gidx-item" onclick="scrollGuide('g1')">① ¿Qué es un átomo?</a>
+              <a class="gidx-item" onclick="scrollGuide('g2')">② Requisitos previos</a>
+              <a class="gidx-item" onclick="scrollGuide('g3')">③ Paso a paso: cargar átomo desde USB</a>
+              <a class="gidx-item" onclick="scrollGuide('g4')">④ Botón + Consola: crear tu consola custom</a>
+              <a class="gidx-item" onclick="scrollGuide('g5')">⑤ Elegir el emulador correcto</a>
+              <a class="gidx-item" onclick="scrollGuide('g6')">⑥ Save States: guardar y continuar</a>
+              <a class="gidx-item" onclick="scrollGuide('g7')">⑦ Sesión offline sin internet</a>
+              <a class="gidx-item" onclick="scrollGuide('g8')">⑧ Solución de problemas</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:0 28px;">
+
+          <!-- SECTION 1 -->
+          <div class="guide-section" id="g1">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">01</span>
+              <div>
+                <div class="guide-sec-title">⚛ ¿Qué es un Átomo?</div>
+                <div class="guide-sec-sub">Concepto base para emulación correcta</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>En el contexto de AIOS GameStation, un <strong style="color:var(--accent3)">átomo</strong> es el archivo de ROM de un videojuego — la imagen binaria exacta del cartucho o disco original almacenada en tu pendrive USB o computadora.</p>
+              <div class="guide-callout info">
+                <span class="gcallout-icon">ℹ</span>
+                <div>Cada átomo es un archivo único que contiene el software completo del juego. Son archivos como <code>.nes</code>, <code>.gba</code>, <code>.iso</code>, <code>.bin</code>, etc. El nombre "átomo" refleja que son la unidad mínima e indivisible del juego.</div>
+              </div>
+              <div class="guide-table">
+                <div class="gt-head"><span>TIPO DE ÁTOMO</span><span>EXTENSIÓN</span><span>CONSOLA</span><span>TAMAÑO TÍPICO</span></div>
+                <div class="gt-row"><span>🟥 NES ROM</span><span><code>.nes</code></span><span>Nintendo NES</span><span>32 KB – 1 MB</span></div>
+                <div class="gt-row"><span>🟣 SNES ROM</span><span><code>.sfc .smc</code></span><span>Super Nintendo</span><span>256 KB – 8 MB</span></div>
+                <div class="gt-row"><span>🟩 Game Boy</span><span><code>.gb .gbc</code></span><span>Game Boy / Color</span><span>32 KB – 8 MB</span></div>
+                <div class="gt-row"><span>🔵 GBA ROM</span><span><code>.gba</code></span><span>Game Boy Advance</span><span>4 MB – 32 MB</span></div>
+                <div class="gt-row"><span>🔴 N64 ROM</span><span><code>.n64 .z64 .v64</code></span><span>Nintendo 64</span><span>8 MB – 64 MB</span></div>
+                <div class="gt-row"><span>🎯 PS1 ROM</span><span><code>.iso .bin .cue</code></span><span>PlayStation 1</span><span>200 MB – 700 MB</span></div>
+                <div class="gt-row"><span>🔷 Sega ROM</span><span><code>.md .gen .sms</code></span><span>Sega Genesis/MD</span><span>512 KB – 4 MB</span></div>
+                <div class="gt-row"><span>⬛ NDS ROM</span><span><code>.nds</code></span><span>Nintendo DS</span><span>16 MB – 512 MB</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2 -->
+          <div class="guide-section" id="g2">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">02</span>
+              <div>
+                <div class="guide-sec-title">✅ Requisitos Previos</div>
+                <div class="guide-sec-sub">Lo que necesitas antes de empezar</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-checklist">
+                <div class="gcl-item done"><span class="gcl-icon">✓</span><div><strong>AIOS GameStation v4</strong> — Este sitio web (ya lo tienes abierto)</div></div>
+                <div class="gcl-item done"><span class="gcl-icon">✓</span><div><strong>Navegador moderno</strong> — Chrome 90+, Edge 90+, Firefox 85+ o Safari 15+</div></div>
+                <div class="gcl-item"><span class="gcl-icon">◉</span><div><strong>Tus átomos (ROMs)</strong> — Archivos de juego en tu pendrive USB o carpeta local</div></div>
+                <div class="gcl-item"><span class="gcl-icon">◉</span><div><strong>Conexión a internet</strong> — Solo para la primera carga del emulador. Después funciona offline.</div></div>
+                <div class="gcl-item opt"><span class="gcl-icon">○</span><div><strong>EmulatorJS local</strong> (opcional) — Para uso 100% offline, descarga EmulatorJS y coloca la carpeta <code>emulatorjs/</code> junto al HTML</div></div>
+              </div>
+              <div class="guide-callout warn">
+                <span class="gcallout-icon">⚠</span>
+                <div><strong>Importante sobre los átomos:</strong> Solo usa ROMs de juegos que posees físicamente. Los archivos de juego son protegidos por derechos de autor en muchos países.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 3 -->
+          <div class="guide-section" id="g3">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">03</span>
+              <div>
+                <div class="guide-sec-title">🔌 Cargar Átomo desde USB</div>
+                <div class="guide-sec-sub">Método paso a paso — el más eficiente</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-steps">
+                <div class="gstep">
+                  <div class="gstep-num">1</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Abre el panel USB</div>
+                    <div class="gstep-desc">Haz clic en el botón <button class="guide-inline-btn" style="border-color:var(--accent3)66;color:var(--accent3);" onclick="openUSBPanel()">🔌 USB</button> en el menú superior. Si ya tienes dispositivos conectados verás un número verde.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">2</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Conecta tu pendrive</div>
+                    <div class="gstep-desc">Haz clic en <strong style="color:var(--accent3)">＋ CONECTAR DISPOSITIVO USB</strong>. El navegador abrirá un selector de carpetas — navega hasta tu pendrive USB y selecciónalo. <em>No necesitas instalar nada.</em></div>
+                    <div class="guide-callout info" style="margin-top:8px;">
+                      <span class="gcallout-icon">ℹ</span>
+                      <div>También puedes usar <strong>📁 ABRIR CARPETA LOCAL</strong> si tus átomos están en el disco duro.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">3</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Navega hasta tus átomos</div>
+                    <div class="gstep-desc">El explorador mostrará todas las carpetas y archivos. Los archivos ROM aparecen marcados con <span style="color:var(--accent3);font-family:'Courier New',monospace;font-size:11px;">🎮 ROM</span> en verde. Puedes entrar en subcarpetas haciendo clic.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">4</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Elige cómo jugar</div>
+                    <div class="gstep-desc">Tienes dos opciones:
+                      <div class="guide-opts">
+                        <div class="gopt"><div class="gopt-title">▶ PLAY directo</div><div class="gopt-desc">Haz clic en el botón <strong>▶ PLAY</strong> del ROM. Selecciona la consola destino y empieza a jugar inmediatamente.</div></div>
+                        <div class="gopt"><div class="gopt-title">+ COLA → importar</div><div class="gopt-desc">Agrega varios ROMs a la cola con <strong>+ COLA</strong>, selecciona la consola y haz clic en <strong>✓ IMPORTAR SELECCIÓN</strong> para añadirlos todos a tu biblioteca.</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">5</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">El átomo queda guardado</div>
+                    <div class="gstep-desc">Una vez importado, el binario del átomo se guarda automáticamente en el almacenamiento local del navegador (IndexedDB). La próxima vez que abras el sitio, el átomo estará disponible <strong style="color:var(--accent3)">sin necesitar el USB</strong>. Verás el indicador <span style="background:rgba(0,212,255,.2);color:var(--accent);padding:1px 6px;border-radius:3px;font-size:10px;font-family:'Courier New',monospace;">⚡ OK</span> en la tarjeta del juego.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4 -->
+          <div class="guide-section" id="g4">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">04</span>
+              <div>
+                <div class="guide-sec-title">＋ Botón Consola: Crear Consola Custom</div>
+                <div class="guide-sec-sub">Cómo añadir cualquier sistema que no aparece por defecto</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <p>El botón <button class="guide-inline-btn" onclick="openModal('modal-add-console')">+ CONSOLA</button> te permite crear un perfil personalizado para cualquier sistema de juego.</p>
+              <div class="guide-steps" style="margin-top:14px;">
+                <div class="gstep">
+                  <div class="gstep-num">1</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Haz clic en + CONSOLA</div>
+                    <div class="gstep-desc">Se abre el panel de configuración de consola.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">2</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Elige el nombre y el motor (core)</div>
+                    <div class="gstep-desc">El campo <strong>MOTOR</strong> es el núcleo de emulación de EmulatorJS. Selecciona el que corresponde a tu sistema:</div>
+                    <div class="guide-table" style="margin-top:8px;">
+                      <div class="gt-head"><span>SISTEMA</span><span>MOTOR A ELEGIR</span><span>EXTENSIONES</span></div>
+                      <div class="gt-row"><span>Famicom Disk System</span><span><code>nes</code></span><span>.fds .nes</span></div>
+                      <div class="gt-row"><span>Super Famicom</span><span><code>snes</code></span><span>.sfc .smc .fig</span></div>
+                      <div class="gt-row"><span>Pokémon Mini</span><span><code>gb</code></span><span>.min</span></div>
+                      <div class="gt-row"><span>Neo Geo Pocket</span><span><code>ngp</code></span><span>.ngp .ngc</span></div>
+                      <div class="gt-row"><span>WonderSwan</span><span><code>ws</code></span><span>.ws .wsc</span></div>
+                      <div class="gt-row"><span>Virtual Boy</span><span><code>vb</code></span><span>.vb .vboy</span></div>
+                      <div class="gt-row"><span>MSX / MSX2</span><span><code>msx</code></span><span>.rom .dsk</span></div>
+                      <div class="gt-row"><span>Arcade personalizado</span><span><code>arcade</code></span><span>.zip</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">3</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Configura extensiones y color</div>
+                    <div class="gstep-desc">Escribe las extensiones de archivo separadas por coma (ej: <code>.gba, .agb</code>) y elige un color identificador. Luego haz clic en <strong>✓ AGREGAR</strong>.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">4</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">La consola aparece en el sidebar</div>
+                    <div class="gstep-desc">Ya puedes cargar átomos en ella desde el USB o con el botón <strong>+ ROM</strong>.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 5 -->
+          <div class="guide-section" id="g5">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">05</span>
+              <div>
+                <div class="guide-sec-title">🎮 Elegir el Emulador Correcto</div>
+                <div class="guide-sec-sub">Guía de motores EmulatorJS para cada átomo</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-callout ok">
+                <span class="gcallout-icon">✓</span>
+                <div>AIOS GameStation usa <strong>EmulatorJS</strong> como motor de emulación. Cada consola tiene un "core" específico. Usar el core correcto es <strong>fundamental</strong> para que el átomo funcione.</div>
+              </div>
+              <div class="guide-emu-grid">
+                <div class="gemu-card" style="border-color:#e74c3c44;">
+                  <div class="gemu-icon" style="background:#e74c3c22;color:#e74c3c;">🟥</div>
+                  <div class="gemu-name">NES / Famicom</div>
+                  <div class="gemu-core">core: <code>nes</code></div>
+                  <div class="gemu-exts">.nes .fds .unf</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐⭐ Excelente</div>
+                  <div class="gemu-tip">El mejor soporte. Casi todos los juegos funcionan perfectamente. Usa este para todos los átomos de NES/Famicom.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#9b59b644;">
+                  <div class="gemu-icon" style="background:#9b59b622;color:#9b59b6;">🟣</div>
+                  <div class="gemu-name">SNES / Super Famicom</div>
+                  <div class="gemu-core">core: <code>snes</code></div>
+                  <div class="gemu-exts">.sfc .smc .fig .bs</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐⭐ Excelente</div>
+                  <div class="gemu-tip">Soporte casi perfecto. Si un juego no carga con .smc prueba renombrarlo a .sfc.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#3498db44;">
+                  <div class="gemu-icon" style="background:#3498db22;color:#3498db;">🔵</div>
+                  <div class="gemu-name">Game Boy Advance</div>
+                  <div class="gemu-core">core: <code>gba</code></div>
+                  <div class="gemu-exts">.gba .agb .gb .gbc</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐⭐ Excelente</div>
+                  <div class="gemu-tip">Uno de los mejores emulados. El core gba también puede correr juegos de GB y GBC si los seleccionas aquí.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#e74c3c44;">
+                  <div class="gemu-icon" style="background:#e74c3c22;color:#e74c3c;">🔴</div>
+                  <div class="gemu-name">Nintendo 64</div>
+                  <div class="gemu-core">core: <code>n64</code></div>
+                  <div class="gemu-exts">.n64 .z64 .v64</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐ Muy bueno</div>
+                  <div class="gemu-tip">Rendimiento depende del juego y PC. Para mejor rendimiento usa átomos en formato .z64 (big-endian). Si va lento, cierra otras pestañas.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#2980b944;">
+                  <div class="gemu-icon" style="background:#2980b922;color:#2980b9;">🎯</div>
+                  <div class="gemu-name">PlayStation 1</div>
+                  <div class="gemu-core">core: <code>psx</code></div>
+                  <div class="gemu-exts">.iso .bin .cue .pbp .chd</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐ Muy bueno</div>
+                  <div class="gemu-tip">Para juegos multi-disco usa formato .chd (comprimido) o .cue+.bin. El archivo .cue apunta al .bin correcto.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#16a08544;">
+                  <div class="gemu-icon" style="background:#16a08522;color:#16a085;">🔷</div>
+                  <div class="gemu-name">Sega Genesis / MD</div>
+                  <div class="gemu-core">core: <code>segaMD</code></div>
+                  <div class="gemu-exts">.md .gen .bin .smd</div>
+                  <div class="gemu-rating">⭐⭐⭐⭐⭐ Excelente</div>
+                  <div class="gemu-tip">Soporte completo incluyendo 32X y Sega CD si tienes los BIOS correspondientes.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#1abc9c44;">
+                  <div class="gemu-icon" style="background:#1abc9c22;color:#1abc9c;">⬛</div>
+                  <div class="gemu-name">Nintendo DS</div>
+                  <div class="gemu-core">core: <code>nds</code></div>
+                  <div class="gemu-exts">.nds .dsi</div>
+                  <div class="gemu-rating">⭐⭐⭐ Bueno</div>
+                  <div class="gemu-tip">Requiere más RAM. Puede ir lento en PCs de gama baja. Recomendado para PCs con 8GB+ RAM.</div>
+                </div>
+                <div class="gemu-card" style="border-color:#f39c1244;">
+                  <div class="gemu-icon" style="background:#f39c1222;color:#f39c12;">👾</div>
+                  <div class="gemu-name">Arcade (MAME)</div>
+                  <div class="gemu-core">core: <code>arcade</code></div>
+                  <div class="gemu-exts">.zip</div>
+                  <div class="gemu-rating">⭐⭐⭐ Variable</div>
+                  <div class="gemu-tip">Compatibilidad varía por juego. El archivo ZIP debe tener el nombre exacto del ROM de MAME (ej: sf2.zip para Street Fighter 2).</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 6 -->
+          <div class="guide-section" id="g6">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">06</span>
+              <div>
+                <div class="guide-sec-title">💾 Save States: Guardar y Continuar tu Partida</div>
+                <div class="guide-sec-sub">Sistema completo de guardado en AIOS GameStation</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-callout ok">
+                <span class="gcallout-icon">✓</span>
+                <div>AIOS GameStation tiene <strong>dos sistemas de guardado</strong> que trabajan juntos: el guardado interno del emulador (SRAM) y el sistema de Save States de la plataforma.</div>
+              </div>
+              <div class="guide-save-methods">
+                <div class="gsave-method">
+                  <div class="gsave-icon" style="color:var(--accent3);">💾</div>
+                  <div class="gsave-title">Save State de Plataforma</div>
+                  <div class="gsave-desc">Usa el botón <strong>💾 SAVE</strong> en la barra del emulador o en el botón de la tarjeta del juego. Guarda el estado exacto en ese momento — como congelar el tiempo.</div>
+                  <div class="gsave-how">
+                    <div class="gsave-step">① Mientras juegas → pulsa <strong>💾 SAVE STATE</strong></div>
+                    <div class="gsave-step">② Para continuar → pulsa <strong>📂 LOAD STATE</strong></div>
+                    <div class="gsave-step">③ También desde la tarjeta → botón <strong>📂 LOAD</strong></div>
+                  </div>
+                </div>
+                <div class="gsave-method">
+                  <div class="gsave-icon" style="color:var(--gold);">🎮</div>
+                  <div class="gsave-title">Guardado Interno del Juego</div>
+                  <div class="gsave-desc">Usa el sistema de guardado del propio juego (menú del juego → Guardar). Este se almacena en la memoria SRAM del emulador y persiste en IndexedDB.</div>
+                  <div class="gsave-how">
+                    <div class="gsave-step">① En el juego → accede al menú de guardado</div>
+                    <div class="gsave-step">② Guarda normalmente como en la consola real</div>
+                    <div class="gsave-step">③ Al reabrir → se restaura automáticamente</div>
+                  </div>
+                </div>
+              </div>
+              <div class="guide-callout info" style="margin-top:14px;">
+                <span class="gcallout-icon">📤</span>
+                <div><strong>Para transferir saves a otro dispositivo:</strong> ve a <strong>💾 SESIÓN</strong> → <strong>📤 EXPORTAR .aios</strong>. Este archivo contiene todos tus save states y átomos. En el otro dispositivo usa <strong>📥 IMPORTAR .aios</strong>.</div>
+              </div>
+              <div class="guide-callout info" style="margin-top:10px;">
+                <span class="gcallout-icon">⬇</span>
+                <div><strong>Save state individual:</strong> En la tarjeta de cada juego hay un botón <strong>⬇</strong> para descargar ese save específico como archivo <code>.aios_save</code>. Puedes cargarlo en cualquier momento con el botón <strong>⬆ CARGAR ARCHIVO DE SAVES</strong> en el panel de sesión.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 7 -->
+          <div class="guide-section" id="g7">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">07</span>
+              <div>
+                <div class="guide-sec-title">✈ Sesión Offline Sin Internet</div>
+                <div class="guide-sec-sub">Cómo usar la plataforma completamente sin conexión</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-steps">
+                <div class="gstep">
+                  <div class="gstep-num">1</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Primera vez: carga con internet</div>
+                    <div class="gstep-desc">La primera vez que juegas, necesitas internet para descargar el core del emulador (EmulatorJS CDN). El Service Worker lo guarda en caché automáticamente.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">2</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Carga tus átomos desde USB</div>
+                    <div class="gstep-desc">Importa tus ROMs usando el método USB o + ROM. Los binarios se guardan en IndexedDB — <strong style="color:var(--accent3)">ya no necesitas el USB después de esto</strong>.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">3</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Exporta tu sesión completa</div>
+                    <div class="gstep-desc">Ve a <strong>💾 SESIÓN</strong> → <strong>📤 EXPORTAR .aios</strong>. Guarda el archivo en tu pendrive. Este archivo contiene todo.</div>
+                  </div>
+                </div>
+                <div class="gstep">
+                  <div class="gstep-num">4</div>
+                  <div class="gstep-body">
+                    <div class="gstep-title">Offline total</div>
+                    <div class="gstep-desc">A partir de este punto, puedes usar la plataforma completamente sin internet. Abre el HTML, importa el .aios si es otro dispositivo, y juega. La barra inferior muestra <span style="background:rgba(255,107,53,.2);color:var(--orange);padding:1px 6px;border-radius:3px;font-size:10px;">✈ OFFLINE</span> cuando no hay conexión.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="guide-callout warn">
+                <span class="gcallout-icon">⚠</span>
+                <div><strong>Nota importante:</strong> Los juegos de PS1 y NDS tienen archivos de 200MB–512MB. El archivo .aios exportado puede ser grande. Usa un pendrive con suficiente espacio.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 8 -->
+          <div class="guide-section" id="g8">
+            <div class="guide-sec-header">
+              <span class="guide-sec-num">08</span>
+              <div>
+                <div class="guide-sec-title">🔧 Solución de Problemas</div>
+                <div class="guide-sec-sub">Errores comunes y cómo resolverlos</div>
+              </div>
+            </div>
+            <div class="guide-body">
+              <div class="guide-faq">
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El juego carga pero la pantalla está negra</div>
+                  <div class="gfaq-a">El core no coincide con el tipo de átomo. Ve a la consola, edita el core. Por ejemplo, un .gba en una consola con core <code>nes</code> no funcionará. Crea una nueva consola con el core correcto.</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El emulador dice "No se pudo cargar EmulatorJS"</div>
+                  <div class="gfaq-a">Sin internet y sin carpeta <code>emulatorjs/</code> local. Solución: conecta a internet una vez para que el Service Worker cachee los archivos, o descarga EmulatorJS desde GitHub y coloca la carpeta junto al HTML.</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El ROM muestra 📁 RE-CARGAR en la tarjeta</div>
+                  <div class="gfaq-a">El binario del átomo no está guardado en IndexedDB (posiblemente fue añadido en una versión anterior). Haz clic en ▶ PLAY y vuelve a seleccionar el archivo ROM una vez. Después quedará guardado permanentemente con ⚡ OK.</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El juego va muy lento</div>
+                  <div class="gfaq-a">Cierra otras pestañas del navegador. Los juegos de N64, PS1 y NDS son exigentes. En Chrome activa la aceleración por hardware: Configuración → Sistema → "Usar aceleración de hardware cuando esté disponible".</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El save state no funciona / no guarda el progreso</div>
+                  <div class="gfaq-a">El Save State de plataforma (botón 💾) funciona mejor con el guardado interno del juego. Para máxima fiabilidad: usa el menú de guardado del propio juego además del save state de la plataforma. El save state captura el estado del emulador; el guardado interno del juego es independiente.</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ El USB no aparece en el detector</div>
+                  <div class="gfaq-a">El API WebUSB/WebHID requiere Chrome o Edge. Firefox tiene soporte limitado. Solución alternativa: usa el botón <strong>📁 ABRIR CARPETA LOCAL</strong> en el panel USB, que funciona en todos los navegadores modernos.</div>
+                </div>
+                <div class="gfaq">
+                  <div class="gfaq-q">❓ Perdí mi sesión al limpiar el navegador</div>
+                  <div class="gfaq-a">Siempre exporta un archivo .aios antes de limpiar el navegador. Ve a 💾 SESIÓN → 📤 EXPORTAR .aios y guárdalo en tu pendrive. Es tu backup completo.</div>
+                </div>
+              </div>
+
+              <!-- Quick reference buttons -->
+              <div style="margin-top:20px;padding:16px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;">
+                <div style="font-size:10px;letter-spacing:3px;color:var(--text3);font-family:'Courier New',Courier,monospace;margin-bottom:12px;">// ACCIONES RÁPIDAS DESDE LA GUÍA</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <button class="hbtn" style="font-size:11px;border-color:var(--accent3)66;color:var(--accent3);" onclick="openUSBPanel();setView('library',document.getElementById('pill-lib'))">🔌 Abrir USB</button>
+                  <button class="hbtn" style="font-size:11px;" onclick="openModal('modal-add-console')">+ Crear Consola</button>
+                  <button class="hbtn" style="font-size:11px;" onclick="openModal('modal-add-rom')">+ Cargar ROM</button>
+                  <button class="hbtn warn" style="font-size:11px;" onclick="openSessionPanel()">💾 Gestionar Sesión</button>
+                  <button class="hbtn" style="font-size:11px;" onclick="exportSessionFile()">📤 Exportar .aios</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /padding wrapper -->
+      </div><!-- /guide-panel -->
     </div>
   </div>
 </div>
@@ -2822,10 +3345,38 @@ function searchRoms(val) { STATE.search = val; renderRomGrid(); }
 
 function setView(v, btn) {
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  if (v==='recent')    filterRoms('rec');
-  if (v==='favorites') filterRoms('fav');
-  if (v==='library')   filterRoms('all');
+  if (btn) btn.classList.add('active');
+
+  const guidePanel = document.getElementById('guide-panel');
+  const romSection = document.getElementById('rom-grid')?.closest('.rom-section');
+  const toolbar    = document.querySelector('.toolbar');
+  const hero       = document.querySelector('.hero');
+
+  if (v === 'guide') {
+    // Show guide, hide library view
+    if (guidePanel)  guidePanel.style.display = 'block';
+    if (romSection)  romSection.style.display = 'none';
+    if (toolbar)     toolbar.style.display    = 'none';
+    if (hero) {
+      document.getElementById('hero-title').textContent = 'GUIA PARA ATOMOS';
+      document.getElementById('hero-sub').textContent   = 'Tutorial completo · Emulacion profesional · USB · Save States';
+    }
+    return;
+  }
+
+  // Restore library view
+  if (guidePanel)  guidePanel.style.display = 'none';
+  if (romSection)  romSection.style.display = 'block';
+  if (toolbar)     toolbar.style.display    = '';
+
+  if (v === 'recent')    filterRoms('rec');
+  if (v === 'favorites') filterRoms('fav');
+  if (v === 'library')   filterRoms('all');
+}
+
+function scrollGuide(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // ══════════════════════════════════════════════════════
